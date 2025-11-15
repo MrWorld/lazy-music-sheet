@@ -4,7 +4,7 @@ import { getInstrumentCategory, getInstrumentSamples, InstrumentCategory } from 
 
 export class AudioPlayer {
   private samplers: Map<InstrumentCategory, Tone.Sampler> = new Map();
-  private drumSampler: Tone.Sampler | null = null;
+  private drumPlayers: Tone.Players | null = null;
   private isPlaying: boolean = false;
   private scheduledNotes: Tone.ToneEvent[] = [];
   private currentTime: number = 0;
@@ -13,44 +13,35 @@ export class AudioPlayer {
 
   constructor() {
     // Initialize samplers will be created on-demand
-    // Initialize drum sampler
-    this.initDrumSampler();
+    // Initialize drum players
+    this.initDrumPlayers();
   }
 
   /**
-   * Initialize drum sampler
-   * Maps MIDI drum notes to sampler keys
+   * Initialize drum players
+   * Uses actual drum samples from Tone.js audio repository
+   * Based on: https://github.com/Tonejs/audio/tree/master/drum-samples/CR78
    */
-  private initDrumSampler() {
-    // Use piano samples as base, but we'll map drum MIDI notes to specific keys
-    // For drums, we use a sampler with piano samples but map notes differently
-    // In a full implementation, you'd use actual drum samples
-    this.drumSampler = new Tone.Sampler({
-      urls: {
-        C1: 'C4.mp3',  // Kick - use low sample
-        D1: 'C4.mp3',  // Snare - will use same sample
-        E1: 'C4.mp3',  // Hi-hat
-        F1: 'C4.mp3',  // Crash
-        G1: 'C4.mp3',  // Tom
+  private initDrumPlayers() {
+    // Use Tone.Players for drums - each drum sound is a specific sample
+    // No pitch shifting needed for drums
+    // Using CR78 drum kit samples from the repository
+    this.drumPlayers = new Tone.Players({
+      kick: 'https://tonejs.github.io/audio/drum-samples/CR78/kick.mp3',
+      snare: 'https://tonejs.github.io/audio/drum-samples/CR78/snare.mp3',
+      hihat: 'https://tonejs.github.io/audio/drum-samples/CR78/hihat.mp3',
+      crash: 'https://tonejs.github.io/audio/drum-samples/CR78/hihat.mp3', // Use hihat for crash (no crash in CR78)
+      tom: 'https://tonejs.github.io/audio/drum-samples/CR78/tom1.mp3',
+    }, {
+      onload: () => {
+        // Samples loaded successfully
       },
-      release: 0.3,
-      baseUrl: 'https://tonejs.github.io/audio/salamander/',
+      onerror: (error) => {
+        console.warn('Error loading drum samples:', error);
+      }
     }).toDestination();
     
-    // Increase polyphony
-    try {
-      const samplerAny = this.drumSampler as any;
-      if (samplerAny._voices) {
-        samplerAny._voices.maxPolyphony = 256;
-      }
-      if ('polyphony' in samplerAny) {
-        samplerAny.polyphony = 256;
-      }
-    } catch (e) {
-      console.warn('Could not set polyphony:', e);
-    }
-    
-    this.drumSampler.volume.value = -6;
+    this.drumPlayers.volume.value = -6;
   }
 
   /**
@@ -87,63 +78,49 @@ export class AudioPlayer {
   }
 
   /**
-   * Play a drum sound based on MIDI note number using sampler
+   * Play a drum sound based on MIDI note number using drum samples
+   * Uses actual drum samples from Tone.js audio repository
    */
   private playDrumSound(midiNote: number, time: number, velocity: number) {
-    if (!this.drumSampler) {
-      this.initDrumSampler();
+    if (!this.drumPlayers) {
+      this.initDrumPlayers();
     }
     
-    // Map MIDI drum notes to sampler note names
+    // Map MIDI drum notes to drum sample names
     // General MIDI drum map: https://en.wikipedia.org/wiki/General_MIDI#Percussion
-    const drumNoteMap: { [key: number]: string } = {
-      35: 'C1',  // Acoustic Bass Drum -> C1 (kick)
-      36: 'C1',  // Bass Drum 1 -> C1 (kick)
-      38: 'D1',  // Acoustic Snare -> D1 (snare)
-      40: 'D1',  // Electric Snare -> D1 (snare)
-      42: 'E1',  // Closed Hi-Hat -> E1 (hihat)
-      44: 'E1',  // Pedal Hi-Hat -> E1 (hihat)
-      46: 'E1',  // Open Hi-Hat -> E1 (hihat)
-      47: 'G1',  // Low-Mid Tom -> G1 (tom)
-      48: 'G1',  // Hi-Mid Tom -> G1 (tom)
-      49: 'F1',  // Crash Cymbal 1 -> F1 (crash)
-      51: 'F1',  // Ride Cymbal 1 -> F1 (crash)
-      57: 'F1',  // Crash Cymbal 2 -> F1 (crash)
+    const drumNoteMap: { [key: number]: 'kick' | 'snare' | 'hihat' | 'crash' | 'tom' } = {
+      35: 'kick',   // Acoustic Bass Drum
+      36: 'kick',   // Bass Drum 1
+      38: 'snare',  // Acoustic Snare
+      40: 'snare',  // Electric Snare
+      42: 'hihat',  // Closed Hi-Hat
+      44: 'hihat',  // Pedal Hi-Hat
+      46: 'hihat',  // Open Hi-Hat
+      47: 'tom',    // Low-Mid Tom
+      48: 'tom',    // Hi-Mid Tom
+      49: 'crash',  // Crash Cymbal 1
+      51: 'crash',  // Ride Cymbal 1
+      57: 'crash',  // Crash Cymbal 2
     };
 
-    // Get the sampler note for this MIDI drum note, default to C1 (kick)
-    const samplerNote = drumNoteMap[midiNote] || 'C1';
+    // Get the drum sample name for this MIDI drum note, default to kick
+    const drumType = drumNoteMap[midiNote] || 'kick';
     
-    // Convert MIDI note to frequency to determine pitch offset
-    // For drums, we want different pitches for different sounds
-    let pitchOffset = 0;
-    if (samplerNote === 'C1') {
-      // Kick - very low
-      pitchOffset = -24; // 2 octaves down
-    } else if (samplerNote === 'D1') {
-      // Snare - mid-low
-      pitchOffset = -12; // 1 octave down
-    } else if (samplerNote === 'E1') {
-      // Hi-hat - high
-      pitchOffset = 12; // 1 octave up
-    } else if (samplerNote === 'F1') {
-      // Crash - very high
-      pitchOffset = 24; // 2 octaves up
-    } else if (samplerNote === 'G1') {
-      // Tom - mid
-      pitchOffset = 0; // Same pitch
+    try {
+      // Get the player for this drum type
+      const player = this.drumPlayers!.player(drumType);
+      if (player) {
+        // Set volume based on velocity
+        player.volume.value = -6 + (velocity * 0.3);
+        // Start the sample at the specified time (use Transport time)
+        // Tone.Player will handle loading automatically
+        player.start(time);
+      } else {
+        console.warn(`Drum player not found for type: ${drumType}`);
+      }
+    } catch (error) {
+      console.warn(`Error playing drum sound ${drumType}:`, error);
     }
-    
-    // Calculate the actual note to play
-    const baseFreq = Tone.Frequency(samplerNote).toFrequency();
-    const targetFreq = baseFreq * Math.pow(2, pitchOffset / 12);
-    const targetNote = Tone.Frequency(targetFreq).toNote();
-    
-    // Use short duration for drums
-    const duration = samplerNote === 'F1' ? 0.3 : 0.1; // Longer for crashes
-    
-    // Trigger the sampler
-    this.drumSampler!.triggerAttackRelease(targetNote, duration, time, velocity);
   }
 
   /**
@@ -185,6 +162,15 @@ export class AudioPlayer {
     } catch (error) {
       console.error('Failed to start audio context:', error);
       throw error;
+    }
+    
+    // Ensure drum samples are loaded before playing
+    if (this.drumPlayers) {
+      try {
+        await Tone.loaded();
+      } catch (error) {
+        console.warn('Drum samples may not be fully loaded:', error);
+      }
     }
 
     // Clear previous scheduled notes
@@ -416,9 +402,9 @@ export class AudioPlayer {
     // Dispose all samplers
     this.samplers.forEach(sampler => sampler.dispose());
     this.samplers.clear();
-    // Dispose drum sampler
-    if (this.drumSampler) {
-      this.drumSampler.dispose();
+    // Dispose drum players
+    if (this.drumPlayers) {
+      this.drumPlayers.dispose();
     }
   }
 }
