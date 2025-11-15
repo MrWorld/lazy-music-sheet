@@ -135,60 +135,47 @@ export function SheetView({
   }, [onNoteDelete, onNoteSelect, selectedNote]);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
   const prevIsPlayingRef = useRef(false);
 
   // Reset scroll to top when playback starts
   useEffect(() => {
     if (isPlaying && !prevIsPlayingRef.current && scrollContainerRef.current) {
-      // Playback just started - reset scroll to top
       scrollContainerRef.current.scrollTop = 0;
     }
     prevIsPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Calculate indicator position and handle auto-scroll
+  // Simple update on time change - just scroll, indicator is always at 20%
   useEffect(() => {
-    // Only update when actually playing
     if (!isPlaying || currentPlaybackTime === undefined || !scrollContainerRef.current || !sheet) {
-      setIndicatorPosition(null);
       return;
     }
-    
+
     const container = scrollContainerRef.current;
     const containerHeight = container.clientHeight;
-    if (containerHeight === 0) return; // Container not ready yet
+    if (containerHeight === 0) return;
+
+    const time = currentPlaybackTime;
+    const ppq = pixelsPerQuarter;
     
-    const targetFixedPosition = containerHeight * 0.2; // 20% from top - where indicator should stay fixed
-    const currentTimePixels = currentPlaybackTime * pixelsPerQuarter;
-    
-    // Phase 1: Indicator starts at top (0px) and moves down until it reaches 20%
-    // Phase 2: Once it reaches 20%, indicator stays fixed and content scrolls
-    
-    if (currentTimePixels < targetFixedPosition) {
-      // Phase 1: Indicator moves from top (0px) down to 20% position
-      // Ensure scroll is at top
+    // Simple calculation: time * pixelsPerQuarter = absolute position
+    const absoluteIndicatorPosition = time * ppq;
+    const targetFixedPosition = containerHeight * 0.2;
+
+    if (absoluteIndicatorPosition < targetFixedPosition) {
+      // Phase 1: Keep scroll at 0
       if (container.scrollTop > 0) {
         container.scrollTop = 0;
       }
-      // Indicator position is simply the current time in pixels (starts at 0)
-      setIndicatorPosition(currentTimePixels);
     } else {
-      // Phase 2: Indicator stays fixed at 20%, content scrolls
-      setIndicatorPosition(targetFixedPosition);
-      
-      // Calculate scroll position to keep current time at 20% from top
-      const targetScrollTop = currentTimePixels - targetFixedPosition;
-      
-      // Smoothly scroll to keep the indicator aligned - update continuously for smooth scrolling
-      const currentScrollTop = container.scrollTop;
-      // Use a very small threshold (0.5px) for smoother, more continuous scrolling
-      if (Math.abs(currentScrollTop - targetScrollTop) > 0.5) {
-        // Direct assignment for immediate update (smooth scrolling)
+      // Phase 2: Scroll to keep current time at 20% from top
+      const targetScrollTop = absoluteIndicatorPosition - targetFixedPosition;
+      // Update scroll smoothly - smaller threshold for smoother scrolling
+      if (Math.abs(container.scrollTop - targetScrollTop) > 2) {
         container.scrollTop = targetScrollTop;
       }
     }
-  }, [currentPlaybackTime, pixelsPerQuarter, sheet, isPlaying]);
+  }, [isPlaying, currentPlaybackTime, pixelsPerQuarter, sheet]);
 
   if (!sheet) {
     return (
@@ -217,12 +204,13 @@ export function SheetView({
         }}
         className="flex-1 overflow-y-auto overflow-x-auto relative"
       >
-        {/* Playback indicator - starts at top, moves down until 20%, then stays fixed while content scrolls */}
-        {isPlaying && indicatorPosition !== null && (
+        {/* Playback indicator - fixed at 20% from top of viewport */}
+        {isPlaying && (
           <div
-            className="absolute left-0 right-0 h-0.5 bg-red-500 z-30 pointer-events-none"
+            className="absolute left-0 right-0 h-1 bg-red-500 z-50 pointer-events-none"
             style={{
-              top: `${indicatorPosition}px`,
+              top: '20%',
+              position: 'sticky',
             }}
           />
         )}
@@ -290,3 +278,4 @@ export function SheetView({
     </div>
   );
 }
+

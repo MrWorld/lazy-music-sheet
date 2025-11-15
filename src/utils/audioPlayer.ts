@@ -2,7 +2,7 @@ import * as Tone from 'tone';
 import type { Sheet } from '../types/note';
 
 export class AudioPlayer {
-  private synth: Tone.PolySynth;
+  private sampler: Tone.Sampler;
   private isPlaying: boolean = false;
   private scheduledNotes: Tone.ToneEvent[] = [];
   private currentTime: number = 0;
@@ -10,37 +10,26 @@ export class AudioPlayer {
   private onTimeUpdate?: (time: number) => void;
 
   constructor() {
-    // Create a polyphonic synthesizer with better piano-like sound using AMSynth
-    // AMSynth (Amplitude Modulation) produces a richer, more musical sound than FMSynth
-    this.synth = new Tone.PolySynth({
-      maxPolyphony: 128, // Allow many simultaneous notes
-      voice: Tone.AMSynth,
-      options: {
-        harmonicity: 3,
-        detune: 0,
-        oscillator: {
-          type: 'triangle', // Triangle wave for smoother sound
-        },
-        envelope: {
-          attack: 0.01,
-          decay: 0.2,
-          sustain: 0.3,
-          release: 0.8, // Longer release for more natural decay
-        },
-        modulation: {
-          type: 'sine',
-        },
-        modulationEnvelope: {
-          attack: 0.01,
-          decay: 0.01,
-          sustain: 1,
-          release: 0.5,
-        },
+    // Use Tone.Sampler with real piano samples (Salamander Grand Piano)
+    // Sampler automatically repitches samples, so we only need a few samples
+    this.sampler = new Tone.Sampler({
+      urls: {
+        C4: 'C4.mp3',
+        'D#4': 'Ds4.mp3',
+        'F#4': 'Fs4.mp3',
+        A4: 'A4.mp3',
       },
+      release: 1,
+      baseUrl: 'https://tonejs.github.io/audio/salamander/',
     }).toDestination();
     
-    // Set volume to a reasonable level
-    this.synth.volume.value = -3; // -3 dB for better volume
+    // Set volume
+    this.sampler.volume.value = -6;
+    
+    // Load samples
+    Tone.loaded().then(() => {
+      console.log('Piano samples loaded successfully');
+    });
   }
 
   async loadSheet(sheet: Sheet) {
@@ -94,6 +83,7 @@ export class AudioPlayer {
       frequency: number;
       duration: number;
       velocity: number;
+      pitch: number; // MIDI note number
     }
     
     const partEvents: Array<[number, NoteEvent]> = [];
@@ -116,9 +106,9 @@ export class AudioPlayer {
       noteSet.add(noteKey);
       
       const startTimeSeconds = note.startTime * secondsPerQuarter;
-      const durationSeconds = Math.max(0.1, note.duration * secondsPerQuarter); // Minimum 100ms for smoother, more musical sound
+      const durationSeconds = Math.max(0.05, note.duration * secondsPerQuarter); // Minimum 50ms
       const frequency = Tone.Frequency(note.pitch, 'midi').toFrequency();
-      const velocity = Math.max(0.3, Math.min(1, note.velocity / 127)); // Higher minimum velocity (0.3) for better sound quality
+      const velocity = Math.max(0.2, Math.min(1, note.velocity / 127)); // Velocity range 0.2-1.0
 
       if (!isFinite(startTimeSeconds) || !isFinite(durationSeconds) || startTimeSeconds < 0) {
         return;
@@ -133,6 +123,7 @@ export class AudioPlayer {
         frequency,
         duration: durationSeconds,
         velocity,
+        pitch: note.pitch, // Store MIDI pitch for sampler
       }]);
     });
 
@@ -148,11 +139,13 @@ export class AudioPlayer {
     console.log(`Scheduling ${partEvents.length} notes. First note at ${partEvents[0]?.[0]?.toFixed(2)}s, Last note at ${partEvents[partEvents.length - 1]?.[0]?.toFixed(2)}s`);
 
     // Create part with all events
-    // The 'time' parameter is already in Transport time (seconds from Transport start)
+    // The 'time' parameter is already in Transport time - use it directly
+    // Tone.js handles lookahead internally for smooth scheduling
     const part = new Tone.Part((time: number, value: NoteEvent) => {
-      // 'time' is the correct Transport time - use it directly
-      // Tone.js handles the scheduling internally, so we don't need to add lookahead here
-      this.synth.triggerAttackRelease(value.frequency, value.duration, time, value.velocity);
+      // Convert MIDI note number to note name for sampler
+      const noteName = Tone.Frequency(value.pitch, 'midi').toNote();
+      // Use the time directly - Tone.js will handle scheduling
+      this.sampler.triggerAttackRelease(noteName, value.duration, time, value.velocity);
     }, partEvents);
 
     // Store the part for cleanup
@@ -165,17 +158,16 @@ export class AudioPlayer {
     Tone.Transport.cancel();
     Tone.Transport.seconds = 0;
     
-    // Start the part first (scheduled relative to transport time 0)
-    part.start(0);
-    
-    // Ensure audio context is running
+    // Ensure audio context is running FIRST
     if (Tone.getContext().state !== 'running') {
       await Tone.getContext().resume();
     }
     
-    // Start transport with a small lookahead to ensure smooth scheduling
-    // This helps prevent choppy playback by giving the audio engine time to prepare
-    Tone.Transport.start('+0.1');
+    // Start the part first
+    part.start(0);
+    
+    // Start transport with small lookahead for smooth audio scheduling
+    Tone.Transport.start('+0.05');
     
     // Verify transport started
     console.log(`Transport started. State: ${Tone.Transport.state}, BPM: ${Tone.Transport.bpm.value}`);
@@ -201,8 +193,8 @@ export class AudioPlayer {
     }
 
     const now = performance.now();
-    // Throttle updates to ~30fps (every ~33ms) to reduce CPU usage
-    if (now - this.lastUpdateTime < 33) {
+    // Throttle updates to ~20fps (every ~50ms) - good balance between smoothness and performance
+    if (now - this.lastUpdateTime < 50) {
       requestAnimationFrame(() => this.updateTime());
       return;
     }
@@ -274,7 +266,7 @@ export class AudioPlayer {
 
   dispose() {
     this.stop();
-    this.synth.dispose();
+    this.sampler.dispose();
   }
 }
 
