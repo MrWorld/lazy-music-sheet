@@ -132,6 +132,7 @@ function App() {
           <SheetView
             sheet={sheet}
             currentPlaybackTime={currentTime}
+            isPlaying={isPlaying}
             onNoteSelect={handleNoteSelect}
             onNoteUpdate={handleNoteUpdate}
             onNoteDelete={handleNoteDelete}

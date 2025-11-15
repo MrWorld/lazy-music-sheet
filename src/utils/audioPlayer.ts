@@ -183,11 +183,13 @@ export class AudioPlayer {
     // Set playing state and start time tracking
     this.isPlaying = true;
     this.currentTime = 0;
+    this.lastUpdateTime = 0;
 
     // Update current time for progress tracking
     this.updateTime();
   }
 
+  private lastUpdateTime: number = 0;
   private updateTime() {
     // Check if actually playing (Transport state is the source of truth)
     const transportState = Tone.Transport.state;
@@ -195,25 +197,31 @@ export class AudioPlayer {
     
     if (!actuallyPlaying || !this.sheet) {
       this.isPlaying = false;
+      return; // Stop the loop when not playing
+    }
+
+    const now = performance.now();
+    // Throttle updates to ~30fps (every ~33ms) to reduce CPU usage
+    if (now - this.lastUpdateTime < 33) {
+      requestAnimationFrame(() => this.updateTime());
       return;
     }
+    this.lastUpdateTime = now;
 
     const elapsed = Tone.Transport.seconds;
     const secondsPerQuarter = 60 / this.sheet.tempo;
     const quarterNotes = elapsed / secondsPerQuarter;
     
-    // Only update if time actually changed (prevents unnecessary updates)
-    if (Math.abs(quarterNotes - this.currentTime) > 0.001) {
-      this.currentTime = quarterNotes;
-
-      // Update callback
-      if (this.onTimeUpdate) {
-        this.onTimeUpdate(quarterNotes);
-      }
+    // Always update currentTime and callback when playing (for smooth indicator)
+    this.currentTime = quarterNotes;
+    if (this.onTimeUpdate) {
+      this.onTimeUpdate(quarterNotes);
     }
 
-    // Continue updating - use requestAnimationFrame for smooth 60fps updates
-    requestAnimationFrame(() => this.updateTime());
+    // Continue updating only when playing - use requestAnimationFrame for smooth updates
+    if (actuallyPlaying) {
+      requestAnimationFrame(() => this.updateTime());
+    }
   }
 
   pause() {

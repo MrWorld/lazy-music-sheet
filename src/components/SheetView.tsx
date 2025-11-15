@@ -6,6 +6,7 @@ import { PianoKeyRow } from './PianoKeyRow';
 interface SheetViewProps {
   sheet: Sheet | null;
   currentPlaybackTime?: number;
+  isPlaying?: boolean;
   onNoteSelect?: (note: Note | null) => void;
   onNoteUpdate?: (oldNote: Note, newNote: Note) => void;
   onNoteDelete?: (note: Note) => void;
@@ -18,6 +19,7 @@ interface SheetViewProps {
 export function SheetView({
   sheet,
   currentPlaybackTime,
+  isPlaying = false,
   onNoteSelect,
   onNoteUpdate,
   onNoteDelete,
@@ -132,10 +134,61 @@ export function SheetView({
     }
   }, [onNoteDelete, onNoteSelect, selectedNote]);
 
-  // Handle scroll - vertical scroll (no time tracking needed for bar-based layout)
-  const handleScroll = useCallback(() => {
-    // Scroll is handled by browser, no need to track viewStartTime for bar-based layout
-  }, []);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
+  const prevIsPlayingRef = useRef(false);
+
+  // Reset scroll to top when playback starts
+  useEffect(() => {
+    if (isPlaying && !prevIsPlayingRef.current && scrollContainerRef.current) {
+      // Playback just started - reset scroll to top
+      scrollContainerRef.current.scrollTop = 0;
+    }
+    prevIsPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  // Calculate indicator position and handle auto-scroll
+  useEffect(() => {
+    // Only update when actually playing
+    if (!isPlaying || currentPlaybackTime === undefined || !scrollContainerRef.current || !sheet) {
+      setIndicatorPosition(null);
+      return;
+    }
+    
+    const container = scrollContainerRef.current;
+    const containerHeight = container.clientHeight;
+    if (containerHeight === 0) return; // Container not ready yet
+    
+    const targetFixedPosition = containerHeight * 0.2; // 20% from top - where indicator should stay fixed
+    const currentTimePixels = currentPlaybackTime * pixelsPerQuarter;
+    
+    // Phase 1: Indicator starts at top (0px) and moves down until it reaches 20%
+    // Phase 2: Once it reaches 20%, indicator stays fixed and content scrolls
+    
+    if (currentTimePixels < targetFixedPosition) {
+      // Phase 1: Indicator moves from top (0px) down to 20% position
+      // Ensure scroll is at top
+      if (container.scrollTop > 0) {
+        container.scrollTop = 0;
+      }
+      // Indicator position is simply the current time in pixels (starts at 0)
+      setIndicatorPosition(currentTimePixels);
+    } else {
+      // Phase 2: Indicator stays fixed at 20%, content scrolls
+      setIndicatorPosition(targetFixedPosition);
+      
+      // Calculate scroll position to keep current time at 20% from top
+      const targetScrollTop = currentTimePixels - targetFixedPosition;
+      
+      // Smoothly scroll to keep the indicator aligned - update continuously for smooth scrolling
+      const currentScrollTop = container.scrollTop;
+      // Use a very small threshold (0.5px) for smoother, more continuous scrolling
+      if (Math.abs(currentScrollTop - targetScrollTop) > 0.5) {
+        // Direct assignment for immediate update (smooth scrolling)
+        container.scrollTop = targetScrollTop;
+      }
+    }
+  }, [currentPlaybackTime, pixelsPerQuarter, sheet, isPlaying]);
 
   if (!sheet) {
     return (
@@ -158,10 +211,22 @@ export function SheetView({
 
       {/* Scrollable sheet area - bars stack vertically */}
       <div
-        ref={containerRef}
-        className="flex-1 overflow-y-auto overflow-x-auto"
-        onScroll={handleScroll}
+        ref={(node) => {
+          containerRef.current = node;
+          scrollContainerRef.current = node;
+        }}
+        className="flex-1 overflow-y-auto overflow-x-auto relative"
       >
+        {/* Playback indicator - starts at top, moves down until 20%, then stays fixed while content scrolls */}
+        {isPlaying && indicatorPosition !== null && (
+          <div
+            className="absolute left-0 right-0 h-0.5 bg-red-500 z-30 pointer-events-none"
+            style={{
+              top: `${indicatorPosition}px`,
+            }}
+          />
+        )}
+        
         <div
           style={{
             height: `${totalDuration * pixelsPerQuarter}px`,
@@ -208,7 +273,6 @@ export function SheetView({
                         onNoteUpdate={handleNoteUpdate}
                         onNoteDelete={handleNoteDelete}
                         selectedNote={selectedNote}
-                        currentPlaybackTime={currentPlaybackTime}
                         editMode={editMode}
                         onRowClick={(e) => handleRowClick(e, keyInfo, barIndex)}
                         leftOffset={leftOffset}

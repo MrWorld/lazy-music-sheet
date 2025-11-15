@@ -11,7 +11,6 @@ interface PianoKeyRowProps {
   onNoteUpdate?: (note: Note) => void;
   onNoteDelete?: (note: Note) => void;
   selectedNote?: Note | null;
-  currentPlaybackTime?: number;
   editMode?: 'select' | 'add' | 'delete';
   onRowClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   leftOffset: number;
@@ -27,7 +26,6 @@ export const PianoKeyRow = memo(function PianoKeyRow({
   onNoteUpdate,
   onNoteDelete,
   selectedNote,
-  currentPlaybackTime,
   editMode = 'select',
   onRowClick,
   leftOffset,
@@ -70,11 +68,12 @@ export const PianoKeyRow = memo(function PianoKeyRow({
         }}
       />
 
-      {/* Quarter note grid lines - horizontal lines (time flows top to bottom) - reduced for performance */}
+      {/* Quarter note grid lines - horizontal lines (time flows top to bottom) - further reduced for performance */}
       {(() => {
-        const numLines = Math.min(Math.ceil((barEndTime - barStartTime) / 0.5) + 1, 20); // Only every half note
+        // Only render grid lines every whole note (4 quarter notes) to reduce memory usage
+        const numLines = Math.min(Math.ceil((barEndTime - barStartTime) / 1) + 1, 5); // Only every whole note, max 5 lines per bar
         return Array.from({ length: numLines }).map((_, i) => {
-          const lineTime = barStartTime + i * 0.5;
+          const lineTime = barStartTime + i * 1;
           const lineTop = (lineTime - barStartTime) * pixelsPerQuarter;
           
           if (!isFinite(lineTop) || lineTop < 0 || lineTop > 4 * pixelsPerQuarter) {
@@ -87,24 +86,12 @@ export const PianoKeyRow = memo(function PianoKeyRow({
               className="absolute left-0 right-0 border-t border-gray-200"
               style={{
                 top: `${lineTop}px`,
-                opacity: i % 2 === 0 ? 0.3 : 0.1,
+                opacity: 0.2,
               }}
             />
           );
         });
       })()}
-
-      {/* Playback indicator - horizontal line */}
-      {currentPlaybackTime !== undefined && 
-       currentPlaybackTime >= barStartTime && 
-       currentPlaybackTime < barEndTime && (
-        <div
-          className="absolute left-0 right-0 h-0.5 bg-red-500 z-20"
-          style={{
-            top: `${(currentPlaybackTime - barStartTime) * pixelsPerQuarter}px`,
-          }}
-        />
-      )}
 
       {/* Note lines - vertical lines (time flows top to bottom) */}
       {keyNotes.map((note, index) => (
