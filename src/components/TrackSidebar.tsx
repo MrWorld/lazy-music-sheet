@@ -5,16 +5,20 @@ interface TrackSidebarProps {
   tracks: Track[];
   visibleTracks: Set<number>;
   mutedTracks: Set<number>;
+  soloTrack: number | null;
   onToggleVisibility: (trackId: number) => void;
   onToggleMute: (trackId: number) => void;
+  onToggleSolo: (trackId: number) => void;
 }
 
 export function TrackSidebar({
   tracks,
   visibleTracks,
   mutedTracks,
+  soloTrack,
   onToggleVisibility,
   onToggleMute,
+  onToggleSolo,
 }: TrackSidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -48,12 +52,15 @@ export function TrackSidebar({
           {tracks.map((track) => {
             const isVisible = visibleTracks.has(track.id);
             const isMuted = mutedTracks.has(track.id);
+            const isSoloed = soloTrack === track.id;
 
             return (
               <div
                 key={track.id}
                 className={`mb-2 p-2 rounded border ${
-                  isVisible
+                  isSoloed
+                    ? 'bg-yellow-50 border-yellow-400'
+                    : isVisible
                     ? 'bg-blue-50 border-blue-300'
                     : 'bg-gray-50 border-gray-200 opacity-60'
                 }`}
@@ -62,6 +69,7 @@ export function TrackSidebar({
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-medium text-gray-800 truncate">
                       {track.name}
+                      {isSoloed && <span className="ml-1 text-yellow-600">(Solo)</span>}
                     </div>
                     {track.instrument && (
                       <div className="text-xs text-gray-500 truncate">
@@ -79,6 +87,7 @@ export function TrackSidebar({
                         : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                     }`}
                     title={isVisible ? 'Hide track' : 'Show track'}
+                    disabled={isSoloed}
                   >
                     {isVisible ? '👁️ Hide' : '👁️‍🗨️ Show'}
                   </button>
@@ -90,8 +99,20 @@ export function TrackSidebar({
                         : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                     }`}
                     title={isMuted ? 'Unmute' : 'Mute'}
+                    disabled={isSoloed}
                   >
                     {isMuted ? '🔇' : '🔊'}
+                  </button>
+                  <button
+                    onClick={() => onToggleSolo(track.id)}
+                    className={`px-2 py-1 text-xs rounded transition-colors ${
+                      isSoloed
+                        ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                        : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                    }`}
+                    title={isSoloed ? 'Unsolo' : 'Solo this track'}
+                  >
+                    {isSoloed ? '🎯' : '🎵'}
                   </button>
                 </div>
               </div>

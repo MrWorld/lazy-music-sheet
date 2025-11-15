@@ -20,6 +20,8 @@ function App() {
   
   // Track visibility state
   const [visibleTracks, setVisibleTracks] = useState<Set<number>>(new Set());
+  const [soloTrack, setSoloTrack] = useState<number | null>(null);
+  const prevStateRef = useRef<{ visible: Set<number>; muted: Set<number> } | null>(null);
   
   // Initialize visible tracks when sheet loads
   useEffect(() => {
@@ -27,11 +29,52 @@ function App() {
       // Show all tracks by default
       setVisibleTracks(new Set(sheet.tracks.map(t => t.id)));
       setMutedTracks(new Set());
+      setSoloTrack(null);
+      prevStateRef.current = null;
     } else {
       setVisibleTracks(new Set());
       setMutedTracks(new Set());
+      setSoloTrack(null);
+      prevStateRef.current = null;
     }
   }, [sheet]);
+  
+  // Handle solo toggle
+  const handleToggleSolo = (trackId: number) => {
+    if (soloTrack === trackId) {
+      // Unsolo: restore previous state
+      if (prevStateRef.current) {
+        setVisibleTracks(new Set(prevStateRef.current.visible));
+        setMutedTracks(new Set(prevStateRef.current.muted));
+      } else {
+        // If no previous state, show all tracks
+        if (sheet?.tracks) {
+          setVisibleTracks(new Set(sheet.tracks.map(t => t.id)));
+          setMutedTracks(new Set());
+        }
+      }
+      setSoloTrack(null);
+      prevStateRef.current = null;
+    } else {
+      // Solo this track: save current state and solo
+      prevStateRef.current = {
+        visible: new Set(visibleTracks),
+        muted: new Set(mutedTracks),
+      };
+      setSoloTrack(trackId);
+      // Solo behavior: hide and mute all other tracks, show and unmute only the soloed track
+      if (sheet?.tracks) {
+        const allTrackIds = new Set(sheet.tracks.map(t => t.id));
+        const otherTrackIds = new Set(allTrackIds);
+        otherTrackIds.delete(trackId);
+        
+        // Hide all other tracks (only show the soloed track)
+        setVisibleTracks(new Set([trackId]));
+        // Mute all other tracks (only the soloed track will play)
+        setMutedTracks(otherTrackIds);
+      }
+    }
+  };
   
   // Restart playback if muted tracks change during playback
   const prevMutedTracksRef = useRef<Set<number>>(new Set());
@@ -191,7 +234,9 @@ function App() {
                 tracks={sheet.tracks}
                 visibleTracks={visibleTracks}
                 mutedTracks={mutedTracks}
+                soloTrack={soloTrack}
                 onToggleVisibility={(trackId) => {
+                  if (soloTrack !== null) return; // Don't allow visibility changes when soloed
                   setVisibleTracks(prev => {
                     const newSet = new Set(prev);
                     if (newSet.has(trackId)) {
@@ -203,6 +248,7 @@ function App() {
                   });
                 }}
                 onToggleMute={(trackId) => {
+                  if (soloTrack !== null) return; // Don't allow mute changes when soloed
                   setMutedTracks(prev => {
                     const newSet = new Set(prev);
                     if (newSet.has(trackId)) {
@@ -213,6 +259,7 @@ function App() {
                     return newSet;
                   });
                 }}
+                onToggleSolo={handleToggleSolo}
               />
             )}
           </>
