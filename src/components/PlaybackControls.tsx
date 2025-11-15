@@ -1,6 +1,7 @@
 interface PlaybackControlsProps {
   isPlaying: boolean;
   tempo: number;
+  currentTime?: number;
   onPlay: () => void;
   onPause: () => void;
   onStop: () => void;
@@ -10,11 +11,18 @@ interface PlaybackControlsProps {
 export function PlaybackControls({
   isPlaying,
   tempo,
+  currentTime = 0,
   onPlay,
   onPause,
   onStop,
   onTempoChange,
 }: PlaybackControlsProps) {
+  const formatQuarterNotes = (quarters: number) => {
+    const bars = Math.floor(quarters / 4);
+    const beats = Math.floor(quarters % 4);
+    const subBeats = Math.floor((quarters % 1) * 4);
+    return `${bars}:${beats}.${subBeats}q`;
+  };
   return (
     <div className="flex items-center gap-4 p-4 bg-gray-100 border-b border-gray-300">
       <div className="flex items-center gap-2">
@@ -56,6 +64,15 @@ export function PlaybackControls({
         />
         <span className="text-sm w-12">{tempo} BPM</span>
       </div>
+      
+      {/* Current playback time display */}
+      {isPlaying && (
+        <div className="ml-auto flex items-center gap-2">
+          <span className="text-sm font-mono font-bold text-blue-600">
+            Time: {formatQuarterNotes(currentTime)}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

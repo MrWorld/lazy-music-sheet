@@ -23,13 +23,27 @@ export class AudioPlayer {
       baseUrl: 'https://tonejs.github.io/audio/salamander/',
     }).toDestination();
     
+    // Increase polyphony to prevent note cutoff
+    // Tone.Sampler uses VoiceLimiter internally - we need to access it
+    try {
+      // Access the internal voice limiter and increase polyphony
+      const samplerAny = this.sampler as any;
+      if (samplerAny._voices) {
+        samplerAny._voices.maxPolyphony = 256; // Much higher limit
+      }
+      // Also try setting polyphony directly if available
+      if ('polyphony' in samplerAny) {
+        samplerAny.polyphony = 256;
+      }
+    } catch (e) {
+      // If setting polyphony fails, continue with default
+      console.warn('Could not set polyphony:', e);
+    }
+    
     // Set volume
     this.sampler.volume.value = -6;
     
-    // Load samples
-    Tone.loaded().then(() => {
-      console.log('Piano samples loaded successfully');
-    });
+    // Load samples (removed console.log for performance)
   }
 
   async loadSheet(sheet: Sheet) {
@@ -43,7 +57,7 @@ export class AudioPlayer {
     }
 
     this.sheet = sheet;
-    this.onTimeUpdate = onTimeUpdate;
+    this.onTimeUpdate = onTimeUpdate; // Store the callback
 
     // Start audio context if not already started - MUST be called after user gesture
     try {
@@ -92,7 +106,7 @@ export class AudioPlayer {
     const noteSet = new Set<string>();
     
     // Prepare all notes - deduplicate by pitch + startTime
-    sheet.notes.forEach((note, index) => {
+    sheet.notes.forEach((note) => {
       // Validate note data
       if (note.pitch < 21 || note.pitch > 108) return;
       if (note.startTime < 0 || note.duration <= 0) return;
@@ -106,18 +120,15 @@ export class AudioPlayer {
       noteSet.add(noteKey);
       
       const startTimeSeconds = note.startTime * secondsPerQuarter;
-      const durationSeconds = Math.max(0.05, note.duration * secondsPerQuarter); // Minimum 50ms
+      const durationSeconds = Math.max(0.1, note.duration * secondsPerQuarter); // Minimum 100ms for smoother playback
       const frequency = Tone.Frequency(note.pitch, 'midi').toFrequency();
-      const velocity = Math.max(0.2, Math.min(1, note.velocity / 127)); // Velocity range 0.2-1.0
+      const velocity = Math.max(0.3, Math.min(1, note.velocity / 127)); // Velocity range 0.3-1.0 for better sound
 
       if (!isFinite(startTimeSeconds) || !isFinite(durationSeconds) || startTimeSeconds < 0) {
         return;
       }
 
-      // Log first few notes for debugging
-      if (index < 3) {
-        console.log(`Note ${index}: pitch=${note.pitch}, startTime=${note.startTime.toFixed(2)}q, duration=${note.duration.toFixed(2)}q`);
-      }
+      // Removed console.log for performance
 
       partEvents.push([startTimeSeconds, {
         frequency,
@@ -135,8 +146,6 @@ export class AudioPlayer {
 
     // Sort events by time to ensure correct order
     partEvents.sort((a, b) => a[0] - b[0]);
-    
-    console.log(`Scheduling ${partEvents.length} notes. First note at ${partEvents[0]?.[0]?.toFixed(2)}s, Last note at ${partEvents[partEvents.length - 1]?.[0]?.toFixed(2)}s`);
 
     // Create part with all events
     // The 'time' parameter is already in Transport time - use it directly
@@ -166,53 +175,34 @@ export class AudioPlayer {
     // Start the part first
     part.start(0);
     
-    // Start transport with small lookahead for smooth audio scheduling
-    Tone.Transport.start('+0.05');
-    
-    // Verify transport started
-    console.log(`Transport started. State: ${Tone.Transport.state}, BPM: ${Tone.Transport.bpm.value}`);
+    // Start transport with lookahead for smooth audio scheduling (prevents choppy playback)
+    Tone.Transport.start('+0.1');
 
-    // Set playing state and start time tracking
+    // Set playing state
     this.isPlaying = true;
     this.currentTime = 0;
-    this.lastUpdateTime = 0;
 
-    // Update current time for progress tracking
-    this.updateTime();
-  }
-
-  private lastUpdateTime: number = 0;
-  private updateTime() {
-    // Check if actually playing (Transport state is the source of truth)
-    const transportState = Tone.Transport.state;
-    const actuallyPlaying = transportState === 'started';
-    
-    if (!actuallyPlaying || !this.sheet) {
-      this.isPlaying = false;
-      return; // Stop the loop when not playing
-    }
-
-    const now = performance.now();
-    // Throttle updates to ~20fps (every ~50ms) - good balance between smoothness and performance
-    if (now - this.lastUpdateTime < 50) {
-      requestAnimationFrame(() => this.updateTime());
-      return;
-    }
-    this.lastUpdateTime = now;
-
-    const elapsed = Tone.Transport.seconds;
-    const secondsPerQuarter = 60 / this.sheet.tempo;
-    const quarterNotes = elapsed / secondsPerQuarter;
-    
-    // Always update currentTime and callback when playing (for smooth indicator)
-    this.currentTime = quarterNotes;
+    // Don't start update loop - SheetView reads directly from Transport to avoid React re-renders
+    // Only update callback occasionally for time display (not for indicator/scroll)
     if (this.onTimeUpdate) {
-      this.onTimeUpdate(quarterNotes);
-    }
-
-    // Continue updating only when playing - use requestAnimationFrame for smooth updates
-    if (actuallyPlaying) {
-      requestAnimationFrame(() => this.updateTime());
+      // Update once immediately, then use a slow interval for time display only
+      const updateTimeDisplay = () => {
+        if (!this.isPlaying || !this.sheet) return;
+        const transportState = Tone.Transport.state;
+        if (transportState === 'started') {
+          const elapsed = Tone.Transport.seconds;
+          const secondsPerQuarter = 60 / this.sheet.tempo;
+          const quarterNotes = elapsed / secondsPerQuarter;
+          this.currentTime = quarterNotes;
+          if (this.onTimeUpdate) {
+            this.onTimeUpdate(quarterNotes);
+          }
+        }
+        if (this.isPlaying) {
+          setTimeout(updateTimeDisplay, 200); // Only 5fps for time display
+        }
+      };
+      setTimeout(updateTimeDisplay, 200);
     }
   }
 

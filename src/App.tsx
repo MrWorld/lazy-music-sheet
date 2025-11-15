@@ -112,6 +112,7 @@ function App() {
           <PlaybackControls
             isPlaying={isPlaying}
             tempo={tempo}
+            currentTime={currentTime}
             onPlay={handlePlay}
             onPause={pause}
             onStop={stop}

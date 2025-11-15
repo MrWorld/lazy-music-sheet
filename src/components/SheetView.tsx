@@ -1,4 +1,5 @@
-import { useState, useRef, useMemo, useCallback, useEffect } from 'react';
+import { useState, useRef, useMemo, useCallback, useEffect, memo } from 'react';
+import * as Tone from 'tone';
 import { generatePianoKeys } from '../utils/pianoUtils';
 import type { Note, Sheet } from '../types/note';
 import { PianoKeyRow } from './PianoKeyRow';
@@ -16,7 +17,7 @@ interface SheetViewProps {
   editMode?: 'select' | 'add' | 'delete';
 }
 
-export function SheetView({
+export const SheetView = memo(function SheetView({
   sheet,
   currentPlaybackTime,
   isPlaying = false,
@@ -136,46 +137,212 @@ export function SheetView({
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevIsPlayingRef = useRef(false);
+  const currentTimeRef = useRef<number>(0);
+  const pixelsPerQuarterRef = useRef<number>(pixelsPerQuarter);
+  const isPlayingRef = useRef<boolean>(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const userScrollingRef = useRef<boolean>(false);
+  const scrollTimeoutRef = useRef<number | null>(null);
+
+  // Keep refs updated
+  useEffect(() => {
+    currentTimeRef.current = currentPlaybackTime ?? 0;
+  }, [currentPlaybackTime]);
+
+  useEffect(() => {
+    pixelsPerQuarterRef.current = pixelsPerQuarter;
+  }, [pixelsPerQuarter]);
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
 
   // Reset scroll to top when playback starts
   useEffect(() => {
     if (isPlaying && !prevIsPlayingRef.current && scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0;
+      currentTimeRef.current = 0;
     }
     prevIsPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Simple update on time change - just scroll, indicator is always at 20%
+  // Combined indicator and scroll update - single loop for better performance
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
+  const [showIndicator, setShowIndicator] = useState(false);
+  const sheetRef = useRef(sheet);
+  const pixelsPerQuarterForIndicatorRef = useRef(pixelsPerQuarter);
+  
+  // Viewport-based rendering - only render visible bars for performance
+  const [visibleBarRange, setVisibleBarRange] = useState({ start: 0, end: 10 });
+  
+  // Keep refs in sync
   useEffect(() => {
-    if (!isPlaying || currentPlaybackTime === undefined || !scrollContainerRef.current || !sheet) {
+    sheetRef.current = sheet;
+    pixelsPerQuarterForIndicatorRef.current = pixelsPerQuarter;
+  }, [sheet, pixelsPerQuarter]);
+  
+  // Update visible bar range based on scroll position
+  useEffect(() => {
+    if (!scrollContainerRef.current || !sheet) return;
+    
+    const updateVisibleBars = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+      
+      const scrollTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
+      const viewportTop = scrollTop;
+      const viewportBottom = scrollTop + containerHeight;
+      
+      // Calculate which bars are visible (with padding)
+      const barHeight = 4 * pixelsPerQuarter;
+      const padding = 2; // Render 2 extra bars above and below
+      const startBar = Math.max(0, Math.floor(viewportTop / barHeight) - padding);
+      const endBar = Math.min(numBars, Math.ceil(viewportBottom / barHeight) + padding);
+      
+      setVisibleBarRange({ start: startBar, end: endBar });
+    };
+    
+    const container = scrollContainerRef.current;
+    container.addEventListener('scroll', updateVisibleBars, { passive: true });
+    updateVisibleBars(); // Initial calculation
+    
+    return () => {
+      container.removeEventListener('scroll', updateVisibleBars);
+    };
+  }, [sheet, pixelsPerQuarter, numBars]);
+
+  // Track manual scrolling - detect when user scrolls manually
+  const isAutoScrollingRef = useRef<boolean>(false);
+  
+  const handleScroll = useCallback(() => {
+    if (!isPlaying) return; // Allow manual scroll when not playing
+    
+    // If we just auto-scrolled, ignore this event
+    if (isAutoScrollingRef.current) {
+      isAutoScrollingRef.current = false;
+      return;
+    }
+    
+    // User is manually scrolling
+    userScrollingRef.current = true;
+    
+    // Clear existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // Reset user scrolling flag after 1.5 seconds of no scrolling
+    scrollTimeoutRef.current = window.setTimeout(() => {
+      userScrollingRef.current = false;
+    }, 50);
+  }, [isPlaying]);
+
+  // Combined indicator and scroll update loop - single loop for better performance
+  useEffect(() => {
+    if (!isPlaying || !scrollContainerRef.current || !sheet) {
+      setShowIndicator(false);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       return;
     }
 
     const container = scrollContainerRef.current;
-    const containerHeight = container.clientHeight;
-    if (containerHeight === 0) return;
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    setShowIndicator(true);
 
-    const time = currentPlaybackTime;
-    const ppq = pixelsPerQuarter;
-    
-    // Simple calculation: time * pixelsPerQuarter = absolute position
-    const absoluteIndicatorPosition = time * ppq;
-    const targetFixedPosition = containerHeight * 0.2;
+    // Combined update function - updates both indicator and scroll in one loop
+    // Throttle to 30fps (33ms) for better performance
+    let lastUpdateTime = 0;
+    const update = () => {
+      if (!isPlayingRef.current || !container) {
+        return;
+      }
 
-    if (absoluteIndicatorPosition < targetFixedPosition) {
-      // Phase 1: Keep scroll at 0
-      if (container.scrollTop > 0) {
-        container.scrollTop = 0;
+      const now = performance.now();
+      // Throttle to 15fps (66ms) to prevent performance issues
+      if (now - lastUpdateTime < 66) {
+        animationFrameRef.current = requestAnimationFrame(update);
+        return;
       }
-    } else {
-      // Phase 2: Scroll to keep current time at 20% from top
-      const targetScrollTop = absoluteIndicatorPosition - targetFixedPosition;
-      // Update scroll smoothly - smaller threshold for smoother scrolling
-      if (Math.abs(container.scrollTop - targetScrollTop) > 2) {
-        container.scrollTop = targetScrollTop;
+      lastUpdateTime = now;
+
+      const transportState = Tone.Transport.state;
+      if (transportState !== 'started') {
+        animationFrameRef.current = requestAnimationFrame(update);
+        return;
       }
-    }
-  }, [isPlaying, currentPlaybackTime, pixelsPerQuarter, sheet]);
+
+      // Cache Transport.seconds read - it's expensive
+      const elapsed = Tone.Transport.seconds;
+      const secondsPerQuarter = 60 / (sheetRef.current?.tempo || 120);
+      const quarterNotes = elapsed / secondsPerQuarter;
+      const ppq = pixelsPerQuarterForIndicatorRef.current;
+      
+      // Update indicator position using transform for better performance
+      if (indicatorRef.current) {
+        const position = quarterNotes * ppq;
+        // Use transform instead of top for better performance (GPU accelerated)
+        indicatorRef.current.style.transform = `translateY(${position}px)`;
+      }
+
+      // Update scroll position (only if not manually scrolling)
+      if (!userScrollingRef.current) {
+        const containerHeight = container.clientHeight;
+        if (containerHeight > 0) {
+          const absolutePosition = quarterNotes * ppq;
+          const targetFixedPosition = containerHeight * 0.2;
+          
+          let targetScrollTop: number;
+          if (absolutePosition < targetFixedPosition) {
+            targetScrollTop = 0;
+          } else {
+            targetScrollTop = absolutePosition - targetFixedPosition;
+          }
+          
+          const currentScroll = container.scrollTop;
+          // Only update if difference is significant to reduce DOM writes
+          if (Math.abs(currentScroll - targetScrollTop) > 1) {
+            isAutoScrollingRef.current = true;
+            container.scrollTop = targetScrollTop;
+            
+            // Update visible bar range after scroll (throttled)
+            const barHeight = 4 * pixelsPerQuarterForIndicatorRef.current;
+            const padding = 2;
+            const startBar = Math.max(0, Math.floor(targetScrollTop / barHeight) - padding);
+            const endBar = Math.min(numBars, Math.ceil((targetScrollTop + containerHeight) / barHeight) + padding);
+            setVisibleBarRange(prev => {
+              // Only update if range changed significantly to avoid unnecessary re-renders
+              if (Math.abs(prev.start - startBar) > 1 || Math.abs(prev.end - endBar) > 1) {
+                return { start: startBar, end: endBar };
+              }
+              return prev;
+            });
+          }
+        }
+      }
+
+      // Continue loop
+      if (isPlayingRef.current) {
+        animationFrameRef.current = requestAnimationFrame(update);
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(update);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [isPlaying, sheet, handleScroll]);
 
   if (!sheet) {
     return (
@@ -204,17 +371,6 @@ export function SheetView({
         }}
         className="flex-1 overflow-y-auto overflow-x-auto relative"
       >
-        {/* Playback indicator - fixed at 20% from top of viewport */}
-        {isPlaying && (
-          <div
-            className="absolute left-0 right-0 h-1 bg-red-500 z-50 pointer-events-none"
-            style={{
-              top: '20%',
-              position: 'sticky',
-            }}
-          />
-        )}
-        
         <div
           style={{
             height: `${totalDuration * pixelsPerQuarter}px`,
@@ -222,8 +378,21 @@ export function SheetView({
             position: 'relative',
           }}
         >
-          {/* Render each 4/4 bar as a row */}
-          {Array.from({ length: numBars }).map((_, barIndex) => {
+          {/* Playback indicator - positioned at actual playback time on the sheet */}
+          {showIndicator && (
+            <div
+              ref={indicatorRef}
+              className="absolute left-0 right-0 h-1 bg-red-500 z-50 pointer-events-none"
+              style={{
+                top: '0px',
+                willChange: 'transform', // Hint to browser for GPU acceleration
+              }}
+            />
+          )}
+          {/* Render only visible bars for performance (viewport-based rendering) */}
+          {Array.from({ length: visibleBarRange.end - visibleBarRange.start }, (_, i) => {
+            const barIndex = visibleBarRange.start + i;
+            
             const barStartTime = barIndex * 4;
             const barEndTime = (barIndex + 1) * 4;
             const barTop = barIndex * barHeight;
@@ -242,7 +411,7 @@ export function SheetView({
                 <div className="relative h-full" style={{ width: `${pianoWidth}px` }}>
                   {keys.map((keyInfo, keyIndex) => {
                     let leftOffset = 0;
-                    // Calculate left offset for this key
+                    // Calculate left offset for this key (memoize this calculation)
                     for (let i = 0; i < keyIndex; i++) {
                       if (keys[i].isBlack) {
                         leftOffset += 12;
@@ -277,5 +446,5 @@ export function SheetView({
       </div>
     </div>
   );
-}
+});
 
