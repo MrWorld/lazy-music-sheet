@@ -354,11 +354,107 @@ export const SheetView = memo(function SheetView({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Time grid header */}
-      <div className="relative h-8 bg-gray-200 border-b border-gray-300 overflow-x-auto">
-        <div className="flex" style={{ width: `${pianoWidth}px` }}>
-          <div className="px-2">
-          </div>
+      {/* Time grid header with note names and octave labels */}
+      <div className="relative bg-gray-200 border-b border-gray-300 overflow-x-auto">
+        {/* Octave labels row */}
+        <div className="relative h-6" style={{ width: `${pianoWidth}px` }}>
+          {(() => {
+            const octaveGroups: { [octave: number]: { startOffset: number; endOffset: number } } = {};
+            let currentOffset = 0;
+            
+            keys.forEach((keyInfo) => {
+              if (!keyInfo.isBlack) {
+                const keyWidth = 20;
+                if (!octaveGroups[keyInfo.octave]) {
+                  octaveGroups[keyInfo.octave] = { startOffset: currentOffset, endOffset: currentOffset };
+                }
+                octaveGroups[keyInfo.octave].endOffset = currentOffset + keyWidth;
+                currentOffset += keyWidth;
+              } else {
+                currentOffset += 12;
+              }
+            });
+            
+            return Object.entries(octaveGroups).map(([octave, range]) => {
+              const octaveNum = parseInt(octave);
+              const octaveColors = [
+                'rgba(255, 200, 200, 0.8)', // Octave 0 - light red
+                'rgba(200, 255, 200, 0.8)', // Octave 1 - light green
+                'rgba(200, 200, 255, 0.8)', // Octave 2 - light blue
+                'rgba(255, 255, 200, 0.8)', // Octave 3 - light yellow
+                'rgba(255, 200, 255, 0.8)', // Octave 4 - light magenta
+                'rgba(200, 255, 255, 0.8)', // Octave 5 - light cyan
+                'rgba(255, 220, 200, 0.8)', // Octave 6 - light orange
+                'rgba(220, 200, 255, 0.8)', // Octave 7 - light purple
+                'rgba(200, 220, 255, 0.8)', // Octave 8 - light blue-purple
+              ];
+              const octaveColor = octaveColors[Math.min(octaveNum, octaveColors.length - 1)] || 'rgba(200, 200, 200, 0.5)';
+              
+              return (
+                <div
+                  key={`octave-${octave}`}
+                  className="absolute top-0 flex items-center justify-center text-xs font-bold text-gray-800"
+                  style={{
+                    left: `${range.startOffset}px`,
+                    width: `${range.endOffset - range.startOffset}px`,
+                    height: '100%',
+                    backgroundColor: octaveColor,
+                  }}
+                >
+                  Octave {octave}
+                </div>
+              );
+            });
+          })()}
+        </div>
+        
+        {/* Note names row */}
+        <div className="relative h-8" style={{ width: `${pianoWidth}px` }}>
+          {keys.map((keyInfo, keyIndex) => {
+            let leftOffset = 0;
+            // Calculate left offset for this key (same calculation as in bar rendering)
+            for (let i = 0; i < keyIndex; i++) {
+              if (keys[i].isBlack) {
+                leftOffset += 12;
+              } else {
+                leftOffset += 20;
+              }
+            }
+            
+            const keyWidth = keyInfo.isBlack ? 12 : 20;
+            // Only show note names on white keys (black keys are too narrow)
+            if (!keyInfo.isBlack) {
+              // Octave colors with 50% opacity
+              const octaveColors = [
+                'rgba(255, 200, 200, 0.8)', // Octave 0 - light red
+                'rgba(200, 255, 200, 0.8)', // Octave 1 - light green
+                'rgba(200, 200, 255, 0.8)', // Octave 2 - light blue
+                'rgba(255, 255, 200, 0.8)', // Octave 3 - light yellow
+                'rgba(255, 200, 255, 0.8)', // Octave 4 - light magenta
+                'rgba(200, 255, 255, 0.8)', // Octave 5 - light cyan
+                'rgba(255, 220, 200, 0.8)', // Octave 6 - light orange
+                'rgba(220, 200, 255, 0.8)', // Octave 7 - light purple
+                'rgba(200, 220, 255, 0.8)', // Octave 8 - light blue-purple
+              ];
+              const octaveColor = octaveColors[Math.min(keyInfo.octave, octaveColors.length - 1)] || 'rgba(0, 0, 0, 1)';
+              
+              return (
+                <div
+                  key={keyInfo.midiNote}
+                  className="absolute top-0 flex items-center justify-center text-xs font-bold text-gray-700"
+                  style={{
+                    left: `${leftOffset}px`,
+                    width: `${keyWidth}px`,
+                    height: '100%',
+                    backgroundColor: octaveColor,
+                  }}
+                >
+                  {keyInfo.name} <span className="font-light text-gray-900 text-[8px]">{keyInfo.octave}</span>
+                </div>
+              );
+            }
+            return null;
+          })}
         </div>
       </div>
 
@@ -381,7 +477,7 @@ export const SheetView = memo(function SheetView({
           {showIndicator && (
             <div
               ref={indicatorRef}
-              className="absolute left-0 right-0 h-1 bg-red-500 z-50 pointer-events-none"
+              className="absolute left-0 right-0 h-[2px] bg-red-600 z-50 pointer-events-none"
               style={{
                 top: '0px',
                 willChange: 'transform', // Hint to browser for GPU acceleration

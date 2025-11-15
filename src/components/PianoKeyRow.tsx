@@ -47,7 +47,7 @@ export const PianoKeyRow = memo(function PianoKeyRow({
   return (
     <div
       className={`absolute border-r border-gray-300 ${
-        isBlack ? 'bg-gray-800 h-[90%]' : 'bg-white h-full '
+        isBlack ? 'bg-gray-500 h-[90%]' : 'bg-white h-full '
       }`}
       onClick={onRowClick}
       style={{
