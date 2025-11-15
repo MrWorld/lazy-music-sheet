@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Track } from '../types/note';
+import { getTrackColor } from '../utils/trackColors';
 
 interface TrackSidebarProps {
   tracks: Track[];
@@ -53,26 +54,41 @@ export function TrackSidebar({
             const isVisible = visibleTracks.has(track.id);
             const isMuted = mutedTracks.has(track.id);
             const isSoloed = soloTrack === track.id;
+            const trackColor = getTrackColor(track.id);
+            
+            // Determine opacity and border based on state
+            let opacity = 1;
+            let borderColor = 'rgba(0, 0, 0, 0.2)';
+            if (!isVisible) {
+              opacity = 0.4;
+            } else if (isMuted) {
+              opacity = 0.6;
+            }
+            if (isSoloed) {
+              borderColor = 'rgba(255, 215, 0, 0.8)';
+              opacity = 1;
+            }
 
             return (
               <div
                 key={track.id}
-                className={`mb-2 p-2 rounded border ${
-                  isSoloed
-                    ? 'bg-yellow-50 border-yellow-400'
-                    : isVisible
-                    ? 'bg-blue-50 border-blue-300'
-                    : 'bg-gray-50 border-gray-200 opacity-60'
-                }`}
+                className="mb-2 p-2 rounded border-2"
+                style={{
+                  backgroundColor: trackColor,
+                  opacity: opacity,
+                  borderColor: borderColor,
+                }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-gray-800 truncate">
-                      {track.name}
-                      {isSoloed && <span className="ml-1 text-yellow-600">(Solo)</span>}
+                    <div className="flex items-center gap-2">
+                      <div className="text-sm font-semibold text-white truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                        {track.name}
+                        {isSoloed && <span className="ml-1 text-yellow-200">(Solo)</span>}
+                      </div>
                     </div>
                     {track.instrument && (
-                      <div className="text-xs text-gray-500 truncate">
+                      <div className="text-xs text-white/90 truncate ml-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                         {track.instrument}
                       </div>
                     )}

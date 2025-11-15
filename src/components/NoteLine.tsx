@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { Note } from '../types/note';
+import { getTrackColor } from '../utils/trackColors';
 
 interface NoteLineProps {
   note: Note;
@@ -54,10 +55,16 @@ export function NoteLine({
   const isVisible = noteEnd > barStartTime && noteStart < barEndTime;
   const isValid = isFinite(top) && isFinite(height) && top >= -10000 && top <= 100000 && height >= 0 && height <= 100000;
   
+  // Use track color, or fallback to velocity-based color if no track
+  const trackColor = getTrackColor(note.trackId);
   const intensity = note.velocity / 127;
+  
+  // For selected notes, use red highlight; otherwise use track color with slight intensity variation
   const color = isSelected 
     ? 'rgb(200, 10, 10)'
-    : `rgb(${Math.floor(200 + intensity * 100)}, ${Math.floor(0 + intensity * 20)}, ${Math.floor(10 + intensity * 55)})`;
+    : note.trackId !== undefined
+    ? trackColor // Use track color directly
+    : `rgb(${Math.floor(200 + intensity * 100)}, ${Math.floor(0 + intensity * 20)}, ${Math.floor(10 + intensity * 55)})`; // Fallback to velocity-based color
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (editMode === 'delete') {
