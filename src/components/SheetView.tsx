@@ -12,9 +12,7 @@ interface SheetViewProps {
   onNoteUpdate?: (oldNote: Note, newNote: Note) => void;
   onNoteDelete?: (note: Note) => void;
   selectedNote?: Note | null;
-  onNoteAdd?: (note: Note) => void;
   pixelsPerQuarter?: number;
-  editMode?: 'select' | 'add' | 'delete';
   visibleTracks?: Set<number>; // Tracks to show in the view
 }
 
@@ -26,9 +24,7 @@ export const SheetView = memo(function SheetView({
   onNoteUpdate,
   onNoteDelete,
   selectedNote,
-  onNoteAdd,
   pixelsPerQuarter = 50,
-  editMode = 'select',
   visibleTracks,
 }: SheetViewProps) {
   const [containerHeight, setContainerHeight] = useState(0);
@@ -81,29 +77,12 @@ export const SheetView = memo(function SheetView({
     return whiteKeys * 20 + blackKeys * 12;
   }, [keys]);
 
-  // Handle click to add note
-  const handleRowClick = useCallback((event: React.MouseEvent<HTMLDivElement>, keyInfo: { midiNote: number }, barIndex: number) => {
+  // Handle click to deselect note
+  const handleRowClick = useCallback(() => {
     if (!sheet) return;
-
-    if (editMode === 'add' && onNoteAdd) {
-      const rect = event.currentTarget.getBoundingClientRect();
-      const clickY = event.clientY - rect.top;
-      const barStartTime = barIndex * 4;
-      const clickTime = barStartTime + (clickY / pixelsPerQuarter);
-      const roundedTime = Math.round(clickTime * 4) / 4;
-
-      const newNote: Note = {
-        pitch: keyInfo.midiNote,
-        startTime: roundedTime,
-        duration: 1,
-        velocity: 100,
-      };
-
-      onNoteAdd(newNote);
-    } else if (editMode === 'select') {
-      onNoteSelect?.(null);
-    }
-  }, [sheet, onNoteAdd, onNoteSelect, pixelsPerQuarter, editMode]);
+    // Deselect when clicking empty space
+    onNoteSelect?.(null);
+  }, [sheet, onNoteSelect]);
 
   const handleNoteUpdate = useCallback((updatedNote: Note) => {
     if (!sheet || !onNoteUpdate) return;
@@ -535,8 +514,7 @@ export const SheetView = memo(function SheetView({
                         onNoteUpdate={handleNoteUpdate}
                         onNoteDelete={handleNoteDelete}
                         selectedNote={selectedNote}
-                        editMode={editMode}
-                        onRowClick={(e) => handleRowClick(e, keyInfo, barIndex)}
+                        onRowClick={handleRowClick}
                         leftOffset={leftOffset}
                         barStartTime={barStartTime}
                         barEndTime={barEndTime}

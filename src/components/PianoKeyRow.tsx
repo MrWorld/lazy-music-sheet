@@ -11,7 +11,6 @@ interface PianoKeyRowProps {
   onNoteUpdate?: (note: Note) => void;
   onNoteDelete?: (note: Note) => void;
   selectedNote?: Note | null;
-  editMode?: 'select' | 'add' | 'delete';
   onRowClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   leftOffset: number;
   barStartTime: number;
@@ -26,7 +25,6 @@ export const PianoKeyRow = memo(function PianoKeyRow({
   onNoteUpdate,
   onNoteDelete,
   selectedNote,
-  editMode = 'select',
   onRowClick,
   leftOffset,
   barStartTime,
@@ -103,7 +101,6 @@ export const PianoKeyRow = memo(function PianoKeyRow({
           onUpdate={onNoteUpdate}
           onDelete={onNoteDelete}
           isSelected={selectedNote === note}
-          editMode={editMode}
           barStartTime={barStartTime}
           barEndTime={barEndTime}
         />

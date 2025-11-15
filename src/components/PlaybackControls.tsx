@@ -62,7 +62,7 @@ export function PlaybackControls({
           onChange={(e) => onTempoChange(Number(e.target.value))}
           className="w-32"
         />
-        <span className="text-sm w-12">{tempo} BPM</span>
+        <span className="text-sm w-12">{Number(tempo).toFixed(0)} BPM</span>
       </div>
       
       {/* Current playback time display */}

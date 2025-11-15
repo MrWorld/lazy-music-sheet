@@ -4,18 +4,17 @@ import { usePlayback } from './hooks/usePlayback';
 import { SheetView } from './components/SheetView';
 import { FileUpload } from './components/FileUpload';
 import { PlaybackControls } from './components/PlaybackControls';
-import { EditToolbar } from './components/EditToolbar';
+import { MusicSearch } from './components/MusicSearch';
 import { ZoomControls } from './components/ZoomControls';
 import { TrackSidebar } from './components/TrackSidebar';
 import type { Note } from './types/note';
 import { useEffect } from 'react';
 
 function App() {
-  const { sheet, addNote, updateNote, removeNote, setSheetData } = useSheet();
+  const { sheet, updateNote, removeNote, setSheetData } = useSheet();
   const [mutedTracks, setMutedTracks] = useState<Set<number>>(new Set());
   const { isPlaying, currentTime, tempo, play, pause, stop, updateTempo } = usePlayback(sheet, mutedTracks);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
-  const [editMode, setEditMode] = useState<'select' | 'add' | 'delete'>('select');
   const [pixelsPerQuarter, setPixelsPerQuarter] = useState(50);
   
   // Track visibility state
@@ -117,6 +116,18 @@ function App() {
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
+      // Don't handle shortcuts if user is typing in an input field
+      const activeElement = document.activeElement;
+      const isInputFocused = activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        (activeElement as HTMLElement).isContentEditable
+      );
+      
+      if (isInputFocused) {
+        return; // Let the input handle the key
+      }
+      
       // Space bar to play/pause
       if (e.code === 'Space' && sheet) {
         e.preventDefault();
@@ -154,10 +165,6 @@ function App() {
     }
   };
 
-  const handleNoteAdd = (note: Note) => {
-    addNote(note);
-  };
-
   const handleNoteSelect = (note: Note | null) => {
     setSelectedNote(note);
   };
@@ -189,7 +196,9 @@ function App() {
       {sheet && (
         <>
           <div className="flex items-center justify-between bg-gray-100 border-b border-gray-300">
-            <EditToolbar mode={editMode} onModeChange={setEditMode} />
+            <div className="flex-1 flex justify-center">
+              <MusicSearch onSheetLoaded={handleSheetLoaded} />
+            </div>
             <ZoomControls pixelsPerQuarter={pixelsPerQuarter} onZoomChange={setPixelsPerQuarter} />
           </div>
           <PlaybackControls
@@ -223,9 +232,7 @@ function App() {
                 onNoteUpdate={handleNoteUpdate}
                 onNoteDelete={handleNoteDelete}
                 selectedNote={selectedNote}
-                onNoteAdd={handleNoteAdd}
                 pixelsPerQuarter={pixelsPerQuarter}
-                editMode={editMode}
                 visibleTracks={visibleTracks.size > 0 ? visibleTracks : undefined}
               />
             </div>

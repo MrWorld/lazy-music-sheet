@@ -9,7 +9,6 @@ interface NoteLineProps {
   onUpdate?: (note: Note) => void;
   onDelete?: (note: Note) => void;
   isSelected?: boolean;
-  editMode?: 'select' | 'add' | 'delete';
   barStartTime: number;
   barEndTime: number;
 }
@@ -21,7 +20,6 @@ export function NoteLine({
   onUpdate,
   onDelete,
   isSelected,
-  editMode = 'select',
   barStartTime,
   barEndTime,
 }: NoteLineProps) {
@@ -67,12 +65,7 @@ export function NoteLine({
     : `rgb(${Math.floor(200 + intensity * 100)}, ${Math.floor(0 + intensity * 20)}, ${Math.floor(10 + intensity * 55)})`; // Fallback to velocity-based color
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (editMode === 'delete') {
-      onDelete?.(note);
-      return;
-    }
-
-    if (editMode === 'add' || !onUpdate) {
+    if (!onUpdate) {
       onSelect?.(note);
       return;
     }
@@ -135,9 +128,8 @@ export function NoteLine({
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (editMode === 'delete' || editMode === 'select') {
-      onDelete?.(note);
-    }
+    // Always allow context menu for delete
+    onDelete?.(note);
   };
   
   if (!isVisible || !isValid) {
@@ -147,7 +139,7 @@ export function NoteLine({
   return (
     <div
       className={`absolute left-0 right-0 transition-opacity ${
-        editMode === 'delete' ? 'cursor-crosshair' : isDragging ? 'cursor-grabbing' : 'cursor-grab'
+        isDragging ? 'cursor-grabbing' : 'cursor-grab'
       } ${isSelected ? 'z-20' : 'z-10'}`}
       style={{
         top: `${top}px`,
@@ -163,7 +155,7 @@ export function NoteLine({
       onContextMenu={handleContextMenu}
       title={`Note: ${note.pitch}, Duration: ${note.duration.toFixed(2)} quarters`}
     >
-      {isSelected && editMode === 'select' && (
+      {isSelected && (
         <div
           className="absolute bottom-0 left-0 right-0 h-2 bg-blue-600 cursor-ns-resize opacity-50 hover:opacity-100"
           style={{ height: '10px' }}
