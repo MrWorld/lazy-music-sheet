@@ -13,9 +13,10 @@ export function generatePianoKeys(): PianoKey[] {
   const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
   
   // 88-key piano starts at A0 (MIDI 21) and ends at C8 (MIDI 108)
+  // Standard MIDI: note % 12 gives note name (0=C, 1=C#, 2=D, ..., 9=A, 10=A#, 11=B)
   for (let midiNote = 21; midiNote <= 108; midiNote++) {
     const octave = Math.floor((midiNote - 12) / 12);
-    const noteIndex = (midiNote - 21) % 12;
+    const noteIndex = midiNote % 12; // Use standard MIDI note to name conversion
     const name = noteNames[noteIndex];
     const isBlack = name.includes('#');
     
