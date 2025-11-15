@@ -13,6 +13,7 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
   
   const notes: Note[] = [];
   const noteSet = new Set<string>(); // Track unique notes to prevent duplicates
+  const tracks: Array<{ id: number; name: string; instrument?: string }> = [];
   
   // Get tempo from MIDI header (default to 120 BPM) - use first tempo for sheet tempo
   const tempo = midi.header.tempos.length > 0 ? midi.header.tempos[0].bpm : 120;
@@ -65,8 +66,21 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
     return quarterNotes;
   };
   
-  // Extract notes from all tracks
-  midi.tracks.forEach(track => {
+  // Extract track information and notes from all tracks
+  midi.tracks.forEach((track, trackIndex) => {
+    // Get track name and instrument
+    const trackName = track.name || `Track ${trackIndex + 1}`;
+    const instrument = track.instrument?.name || undefined;
+    
+    // Only add track if it has notes
+    if (track.notes.length > 0) {
+      tracks.push({
+        id: trackIndex,
+        name: trackName,
+        instrument,
+      });
+    }
+    
     track.notes.forEach(midiNote => {
       // Filter out notes outside piano range (21-108 for 88-key piano)
       if (midiNote.midi < 21 || midiNote.midi > 108) {
@@ -83,8 +97,8 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
         return;
       }
       
-      // Create unique key to prevent duplicates (pitch + startTime rounded to 4 decimal places)
-      const noteKey = `${midiNote.midi}-${startTime.toFixed(4)}`;
+      // Create unique key to prevent duplicates (trackId + pitch + startTime rounded to 4 decimal places)
+      const noteKey = `${trackIndex}-${midiNote.midi}-${startTime.toFixed(4)}`;
       if (noteSet.has(noteKey)) {
         return; // Skip duplicate note
       }
@@ -95,6 +109,7 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
         startTime,
         duration: Math.max(0.25, duration), // Ensure minimum duration
         velocity: Math.round(Math.max(0, Math.min(127, midiNote.velocity * 127))), // Clamp 0-127
+        trackId: trackIndex, // Assign track ID to note
       });
     });
   });
@@ -114,6 +129,7 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
     notes,
     tempo,
     timeSignature,
+    tracks: tracks.length > 0 ? tracks : undefined, // Only include tracks if there are multiple
   };
 }
 

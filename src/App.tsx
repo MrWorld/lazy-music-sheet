@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSheet } from './hooks/useSheet';
 import { usePlayback } from './hooks/usePlayback';
 import { SheetView } from './components/SheetView';
@@ -6,15 +6,55 @@ import { FileUpload } from './components/FileUpload';
 import { PlaybackControls } from './components/PlaybackControls';
 import { EditToolbar } from './components/EditToolbar';
 import { ZoomControls } from './components/ZoomControls';
+import { TrackSidebar } from './components/TrackSidebar';
 import type { Note } from './types/note';
 import { useEffect } from 'react';
 
 function App() {
   const { sheet, addNote, updateNote, removeNote, setSheetData } = useSheet();
-  const { isPlaying, currentTime, tempo, play, pause, stop, updateTempo } = usePlayback(sheet);
+  const [mutedTracks, setMutedTracks] = useState<Set<number>>(new Set());
+  const { isPlaying, currentTime, tempo, play, pause, stop, updateTempo } = usePlayback(sheet, mutedTracks);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [editMode, setEditMode] = useState<'select' | 'add' | 'delete'>('select');
   const [pixelsPerQuarter, setPixelsPerQuarter] = useState(50);
+  
+  // Track visibility state
+  const [visibleTracks, setVisibleTracks] = useState<Set<number>>(new Set());
+  
+  // Initialize visible tracks when sheet loads
+  useEffect(() => {
+    if (sheet?.tracks && sheet.tracks.length > 0) {
+      // Show all tracks by default
+      setVisibleTracks(new Set(sheet.tracks.map(t => t.id)));
+      setMutedTracks(new Set());
+    } else {
+      setVisibleTracks(new Set());
+      setMutedTracks(new Set());
+    }
+  }, [sheet]);
+  
+  // Restart playback if muted tracks change during playback
+  const prevMutedTracksRef = useRef<Set<number>>(new Set());
+  useEffect(() => {
+    // Check if muted tracks actually changed
+    const mutedChanged = 
+      prevMutedTracksRef.current.size !== mutedTracks.size ||
+      Array.from(prevMutedTracksRef.current).some(id => !mutedTracks.has(id)) ||
+      Array.from(mutedTracks).some(id => !prevMutedTracksRef.current.has(id));
+    
+    if (mutedChanged && isPlaying && sheet) {
+      // Restart playback with new muted tracks
+      const wasPlaying = isPlaying;
+      stop();
+      if (wasPlaying) {
+        setTimeout(() => {
+          play();
+        }, 100);
+      }
+    }
+    prevMutedTracksRef.current = new Set(mutedTracks);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mutedTracks, isPlaying, sheet]);
 
   const handleNoteDelete = (note: Note) => {
     if (!sheet) return;
@@ -122,26 +162,60 @@ function App() {
       )}
 
       {/* Main content */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden flex">
         {!sheet ? (
-          <div className="h-full flex items-center justify-center p-8">
+          <div className="h-full flex items-center justify-center p-8 flex-1">
             <div className="w-full max-w-md">
               <FileUpload onSheetLoaded={handleSheetLoaded} />
             </div>
           </div>
         ) : (
-          <SheetView
-            sheet={sheet}
-            currentPlaybackTime={currentTime}
-            isPlaying={isPlaying}
-            onNoteSelect={handleNoteSelect}
-            onNoteUpdate={handleNoteUpdate}
-            onNoteDelete={handleNoteDelete}
-            selectedNote={selectedNote}
-            onNoteAdd={handleNoteAdd}
-            pixelsPerQuarter={pixelsPerQuarter}
-            editMode={editMode}
-          />
+          <>
+            <div className="flex-1 overflow-hidden">
+              <SheetView
+                sheet={sheet}
+                currentPlaybackTime={currentTime}
+                isPlaying={isPlaying}
+                onNoteSelect={handleNoteSelect}
+                onNoteUpdate={handleNoteUpdate}
+                onNoteDelete={handleNoteDelete}
+                selectedNote={selectedNote}
+                onNoteAdd={handleNoteAdd}
+                pixelsPerQuarter={pixelsPerQuarter}
+                editMode={editMode}
+                visibleTracks={visibleTracks.size > 0 ? visibleTracks : undefined}
+              />
+            </div>
+            {sheet.tracks && sheet.tracks.length > 1 && (
+              <TrackSidebar
+                tracks={sheet.tracks}
+                visibleTracks={visibleTracks}
+                mutedTracks={mutedTracks}
+                onToggleVisibility={(trackId) => {
+                  setVisibleTracks(prev => {
+                    const newSet = new Set(prev);
+                    if (newSet.has(trackId)) {
+                      newSet.delete(trackId);
+                    } else {
+                      newSet.add(trackId);
+                    }
+                    return newSet;
+                  });
+                }}
+                onToggleMute={(trackId) => {
+                  setMutedTracks(prev => {
+                    const newSet = new Set(prev);
+                    if (newSet.has(trackId)) {
+                      newSet.delete(trackId);
+                    } else {
+                      newSet.add(trackId);
+                    }
+                    return newSet;
+                  });
+                }}
+              />
+            )}
+          </>
         )}
       </div>
     </div>

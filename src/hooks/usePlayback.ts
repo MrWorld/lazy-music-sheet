@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { AudioPlayer } from '../utils/audioPlayer';
 import type { Sheet } from '../types/note';
 
-export function usePlayback(sheet: Sheet | null) {
+export function usePlayback(sheet: Sheet | null, mutedTracks?: Set<number>) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [tempo, setTempo] = useState(120);
@@ -37,7 +37,7 @@ export function usePlayback(sheet: Sheet | null) {
         setIsPlaying(true);
         await playerRef.current.play(sheet, (time) => {
           setCurrentTime(time);
-        });
+        }, mutedTracks);
       }
     } catch (error) {
       console.error('Playback error:', error);

@@ -15,6 +15,7 @@ interface SheetViewProps {
   onNoteAdd?: (note: Note) => void;
   pixelsPerQuarter?: number;
   editMode?: 'select' | 'add' | 'delete';
+  visibleTracks?: Set<number>; // Tracks to show in the view
 }
 
 export const SheetView = memo(function SheetView({
@@ -28,6 +29,7 @@ export const SheetView = memo(function SheetView({
   onNoteAdd,
   pixelsPerQuarter = 50,
   editMode = 'select',
+  visibleTracks,
 }: SheetViewProps) {
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -515,11 +517,19 @@ export const SheetView = memo(function SheetView({
                       }
                     }
                     
+                    // Filter notes for this key and visible tracks
+                    const filteredNotes = visibleTracks && visibleTracks.size > 0
+                      ? sheet.notes.filter(note => 
+                          note.pitch === keyInfo.midiNote &&
+                          (!note.trackId || visibleTracks.has(note.trackId))
+                        )
+                      : sheet.notes.filter(note => note.pitch === keyInfo.midiNote);
+                    
                     return (
                       <PianoKeyRow
                         key={keyInfo.midiNote}
                         keyInfo={keyInfo}
-                        notes={sheet.notes}
+                        notes={filteredNotes}
                         pixelsPerQuarter={pixelsPerQuarter}
                         onNoteSelect={onNoteSelect}
                         onNoteUpdate={handleNoteUpdate}

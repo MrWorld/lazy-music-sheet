@@ -51,7 +51,7 @@ export class AudioPlayer {
     this.stop();
   }
 
-  async play(sheet: Sheet, onTimeUpdate?: (time: number) => void) {
+  async play(sheet: Sheet, onTimeUpdate?: (time: number) => void, mutedTracks?: Set<number>) {
     if (this.isPlaying) {
       this.stop();
     }
@@ -107,6 +107,11 @@ export class AudioPlayer {
     
     // Prepare all notes - deduplicate by pitch + startTime
     sheet.notes.forEach((note) => {
+      // Skip muted tracks
+      if (mutedTracks && note.trackId !== undefined && mutedTracks.has(note.trackId)) {
+        return;
+      }
+      
       // Validate note data
       if (note.pitch < 21 || note.pitch > 108) return;
       if (note.startTime < 0 || note.duration <= 0) return;
