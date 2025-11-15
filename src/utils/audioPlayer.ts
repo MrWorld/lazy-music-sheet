@@ -210,7 +210,8 @@ export class AudioPlayer {
     const state = Tone.Transport.state;
     if (state === 'started') {
       Tone.Transport.pause();
-      // Keep isPlaying true so time tracking continues (but will stop due to Transport state check)
+      this.isPlaying = false;
+      // Don't reset currentTime - keep it for resume
     }
   }
 
@@ -218,14 +219,38 @@ export class AudioPlayer {
     if (this.sheet) {
       const state = Tone.Transport.state;
       if (state === 'paused') {
+        // Resume from where we paused
         Tone.Transport.start();
         this.isPlaying = true;
-        // Time tracking will resume automatically via updateTime loop
+        // Restart time display updates
+        if (this.onTimeUpdate) {
+          const updateTimeDisplay = () => {
+            if (!this.isPlaying || !this.sheet) return;
+            const transportState = Tone.Transport.state;
+            if (transportState === 'started') {
+              const elapsed = Tone.Transport.seconds;
+              const secondsPerQuarter = 60 / this.sheet.tempo;
+              const quarterNotes = elapsed / secondsPerQuarter;
+              this.currentTime = quarterNotes;
+              if (this.onTimeUpdate) {
+                this.onTimeUpdate(quarterNotes);
+              }
+            }
+            if (this.isPlaying) {
+              setTimeout(updateTimeDisplay, 200);
+            }
+          };
+          setTimeout(updateTimeDisplay, 200);
+        }
       } else if (state === 'stopped') {
         // If stopped, need to restart playback
         this.play(this.sheet, this.onTimeUpdate);
       }
     }
+  }
+
+  getTransportState(): string {
+    return Tone.Transport.state;
   }
 
   stop() {

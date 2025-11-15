@@ -26,10 +26,19 @@ export function usePlayback(sheet: Sheet | null) {
     if (!sheet || !playerRef.current) return;
     
     try {
-      setIsPlaying(true);
-      await playerRef.current.play(sheet, (time) => {
-        setCurrentTime(time);
-      });
+      // Check if already paused - if so, resume instead of restarting
+      const state = playerRef.current.getTransportState();
+      if (state === 'paused') {
+        // Resume from where we paused
+        playerRef.current.resume();
+        setIsPlaying(true);
+      } else {
+        // Start from beginning
+        setIsPlaying(true);
+        await playerRef.current.play(sheet, (time) => {
+          setCurrentTime(time);
+        });
+      }
     } catch (error) {
       console.error('Playback error:', error);
       setIsPlaying(false);
@@ -40,6 +49,7 @@ export function usePlayback(sheet: Sheet | null) {
   const pause = () => {
     playerRef.current?.pause();
     setIsPlaying(false);
+    // Don't reset currentTime - keep it so we can resume from here
   };
 
   const stop = () => {
