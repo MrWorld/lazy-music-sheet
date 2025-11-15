@@ -358,7 +358,6 @@ export const SheetView = memo(function SheetView({
       <div className="relative h-8 bg-gray-200 border-b border-gray-300 overflow-x-auto">
         <div className="flex" style={{ width: `${pianoWidth}px` }}>
           <div className="px-2">
-            <span className="text-xs text-gray-600">Time →</span>
           </div>
         </div>
       </div>

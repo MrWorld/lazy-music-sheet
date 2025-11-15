@@ -56,8 +56,8 @@ export function NoteLine({
   
   const intensity = note.velocity / 127;
   const color = isSelected 
-    ? 'rgb(59, 130, 246)'
-    : `rgb(${Math.floor(100 + intensity * 100)}, ${Math.floor(150 + intensity * 50)}, ${Math.floor(200 + intensity * 55)})`;
+    ? 'rgb(200, 10, 10)'
+    : `rgb(${Math.floor(200 + intensity * 100)}, ${Math.floor(10 + intensity * 20)}, ${Math.floor(10 + intensity * 55)})`;
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (editMode === 'delete') {

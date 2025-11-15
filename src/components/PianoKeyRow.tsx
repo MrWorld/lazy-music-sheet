@@ -47,7 +47,7 @@ export const PianoKeyRow = memo(function PianoKeyRow({
   return (
     <div
       className={`absolute border-r border-gray-300 ${
-        isBlack ? 'bg-gray-800 h-8' : 'bg-white h-12'
+        isBlack ? 'bg-gray-800 h-[90%]' : 'bg-white h-full '
       }`}
       onClick={onRowClick}
       style={{
@@ -63,7 +63,7 @@ export const PianoKeyRow = memo(function PianoKeyRow({
         className="absolute top-0 bottom-0 left-0 right-0 opacity-20"
         style={{
           backgroundImage: isBlack
-            ? 'repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)'
+            ? 'repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px)'
             : 'repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px)',
         }}
       />
@@ -86,7 +86,7 @@ export const PianoKeyRow = memo(function PianoKeyRow({
               className="absolute left-0 right-0 border-t border-gray-200"
               style={{
                 top: `${lineTop}px`,
-                opacity: 0.2,
+                opacity: 0.5,
               }}
             />
           );
