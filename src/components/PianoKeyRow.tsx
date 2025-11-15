@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import type { Note } from '../types/note';
 import type { PianoKey } from '../utils/pianoUtils';
 import { NoteLine } from './NoteLine';
@@ -19,7 +19,7 @@ interface PianoKeyRowProps {
   barEndTime: number;
 }
 
-export function PianoKeyRow({
+export const PianoKeyRow = memo(function PianoKeyRow({
   keyInfo,
   notes,
   pixelsPerQuarter,
@@ -70,11 +70,11 @@ export function PianoKeyRow({
         }}
       />
 
-      {/* Quarter note grid lines - horizontal lines (time flows top to bottom) */}
+      {/* Quarter note grid lines - horizontal lines (time flows top to bottom) - reduced for performance */}
       {(() => {
-        const numLines = Math.min(Math.ceil((barEndTime - barStartTime) / 0.25) + 1, 100);
+        const numLines = Math.min(Math.ceil((barEndTime - barStartTime) / 0.5) + 1, 20); // Only every half note
         return Array.from({ length: numLines }).map((_, i) => {
-          const lineTime = barStartTime + i * 0.25;
+          const lineTime = barStartTime + i * 0.5;
           const lineTop = (lineTime - barStartTime) * pixelsPerQuarter;
           
           if (!isFinite(lineTop) || lineTop < 0 || lineTop > 4 * pixelsPerQuarter) {
@@ -87,7 +87,7 @@ export function PianoKeyRow({
               className="absolute left-0 right-0 border-t border-gray-200"
               style={{
                 top: `${lineTop}px`,
-                opacity: i % 4 === 0 ? 0.3 : 0.1,
+                opacity: i % 2 === 0 ? 0.3 : 0.1,
               }}
             />
           );
@@ -123,4 +123,4 @@ export function PianoKeyRow({
       ))}
     </div>
   );
-}
+});

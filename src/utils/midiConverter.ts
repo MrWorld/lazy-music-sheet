@@ -12,6 +12,7 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
   }
   
   const notes: Note[] = [];
+  const noteSet = new Set<string>(); // Track unique notes to prevent duplicates
   
   // Get tempo from MIDI header (default to 120 BPM)
   const tempo = midi.header.tempos.length > 0 ? midi.header.tempos[0].bpm : 120;
@@ -35,6 +36,13 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
       if (startTime < 0 || duration <= 0 || isNaN(startTime) || isNaN(duration) || !isFinite(startTime) || !isFinite(duration)) {
         return;
       }
+      
+      // Create unique key to prevent duplicates (pitch + startTime rounded to 4 decimal places)
+      const noteKey = `${midiNote.midi}-${startTime.toFixed(4)}`;
+      if (noteSet.has(noteKey)) {
+        return; // Skip duplicate note
+      }
+      noteSet.add(noteKey);
       
       notes.push({
         pitch: midiNote.midi,

@@ -25,10 +25,16 @@ export function usePlayback(sheet: Sheet | null) {
   const play = async () => {
     if (!sheet || !playerRef.current) return;
     
-    setIsPlaying(true);
-    await playerRef.current.play(sheet, (time) => {
-      setCurrentTime(time);
-    });
+    try {
+      setIsPlaying(true);
+      await playerRef.current.play(sheet, (time) => {
+        setCurrentTime(time);
+      });
+    } catch (error) {
+      console.error('Playback error:', error);
+      setIsPlaying(false);
+      alert('Failed to start playback. Please try clicking Play again.');
+    }
   };
 
   const pause = () => {
