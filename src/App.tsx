@@ -180,10 +180,10 @@ function App() {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-300 p-4">
+      {/* <div className="bg-white border-b border-gray-300 p-4">
         <h1 className="text-2xl font-bold text-gray-800">Piano Sheet Alternative</h1>
         <p className="text-sm text-gray-600">Visual music notation with 88-key piano rows</p>
-      </div>
+      </div> */}
 
       {/* Controls */}
       {sheet && (

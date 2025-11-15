@@ -1,5 +1,5 @@
 import { Midi } from '@tonejs/midi';
-import type { Note, Sheet } from '../types/note';
+import type { Note, Sheet, Track } from '../types/note';
 
 export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> {
   let midi: Midi;
@@ -13,7 +13,7 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
   
   const notes: Note[] = [];
   const noteSet = new Set<string>(); // Track unique notes to prevent duplicates
-  const tracks: Array<{ id: number; name: string; instrument?: string }> = [];
+  const tracks: Track[] = [];
   
   // Get tempo from MIDI header (default to 120 BPM) - use first tempo for sheet tempo
   const tempo = midi.header.tempos.length > 0 ? midi.header.tempos[0].bpm : 120;
@@ -72,12 +72,19 @@ export async function midiToSheet(midiFile: File | ArrayBuffer): Promise<Sheet> 
     const trackName = track.name || `Track ${trackIndex + 1}`;
     const instrument = track.instrument?.name || undefined;
     
+    // Extract MIDI program number and channel
+    // @tonejs/midi stores program changes in track.instrument
+    const programNumber = track.instrument?.number;
+    const channel = track.channel;
+    
     // Only add track if it has notes
     if (track.notes.length > 0) {
       tracks.push({
         id: trackIndex,
         name: trackName,
         instrument,
+        programNumber,
+        channel,
       });
     }
     

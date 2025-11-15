@@ -10,6 +10,8 @@ export interface Track {
   id: number;
   name: string;
   instrument?: string;
+  programNumber?: number; // MIDI program number (0-127)
+  channel?: number; // MIDI channel (0-15)
 }
 
 export interface Sheet {

@@ -1,8 +1,10 @@
 import * as Tone from 'tone';
 import type { Sheet } from '../types/note';
+import { getInstrumentCategory, getInstrumentSamples, InstrumentCategory } from './instrumentMapper';
 
 export class AudioPlayer {
-  private sampler: Tone.Sampler;
+  private samplers: Map<InstrumentCategory, Tone.Sampler> = new Map();
+  private drumSampler: Tone.Sampler | null = null;
   private isPlaying: boolean = false;
   private scheduledNotes: Tone.ToneEvent[] = [];
   private currentTime: number = 0;
@@ -10,40 +12,154 @@ export class AudioPlayer {
   private onTimeUpdate?: (time: number) => void;
 
   constructor() {
-    // Use Tone.Sampler with real piano samples (Salamander Grand Piano)
-    // Sampler automatically repitches samples, so we only need a few samples
-    this.sampler = new Tone.Sampler({
+    // Initialize samplers will be created on-demand
+    // Initialize drum sampler
+    this.initDrumSampler();
+  }
+
+  /**
+   * Initialize drum sampler
+   * Maps MIDI drum notes to sampler keys
+   */
+  private initDrumSampler() {
+    // Use piano samples as base, but we'll map drum MIDI notes to specific keys
+    // For drums, we use a sampler with piano samples but map notes differently
+    // In a full implementation, you'd use actual drum samples
+    this.drumSampler = new Tone.Sampler({
       urls: {
-        C4: 'C4.mp3',
-        'D#4': 'Ds4.mp3',
-        'F#4': 'Fs4.mp3',
-        A4: 'A4.mp3',
+        C1: 'C4.mp3',  // Kick - use low sample
+        D1: 'C4.mp3',  // Snare - will use same sample
+        E1: 'C4.mp3',  // Hi-hat
+        F1: 'C4.mp3',  // Crash
+        G1: 'C4.mp3',  // Tom
       },
-      release: 1,
+      release: 0.3,
       baseUrl: 'https://tonejs.github.io/audio/salamander/',
     }).toDestination();
     
-    // Increase polyphony to prevent note cutoff
-    // Tone.Sampler uses VoiceLimiter internally - we need to access it
+    // Increase polyphony
     try {
-      // Access the internal voice limiter and increase polyphony
-      const samplerAny = this.sampler as any;
+      const samplerAny = this.drumSampler as any;
       if (samplerAny._voices) {
-        samplerAny._voices.maxPolyphony = 256; // Much higher limit
+        samplerAny._voices.maxPolyphony = 256;
       }
-      // Also try setting polyphony directly if available
       if ('polyphony' in samplerAny) {
         samplerAny.polyphony = 256;
       }
     } catch (e) {
-      // If setting polyphony fails, continue with default
       console.warn('Could not set polyphony:', e);
     }
     
-    // Set volume
-    this.sampler.volume.value = -6;
+    this.drumSampler.volume.value = -6;
+  }
+
+  /**
+   * Get or create a sampler for an instrument category
+   */
+  private getSampler(category: InstrumentCategory): Tone.Sampler {
+    if (!this.samplers.has(category)) {
+      const samples = getInstrumentSamples(category);
+      const sampler = new Tone.Sampler({
+        urls: samples.urls,
+        release: 1,
+        baseUrl: samples.baseUrl,
+      }).toDestination();
+      
+      // Increase polyphony to prevent note cutoff
+      try {
+        const samplerAny = sampler as any;
+        if (samplerAny._voices) {
+          samplerAny._voices.maxPolyphony = 256;
+        }
+        if ('polyphony' in samplerAny) {
+          samplerAny.polyphony = 256;
+        }
+      } catch (e) {
+        console.warn('Could not set polyphony:', e);
+      }
+      
+      // Set volume
+      sampler.volume.value = -6;
+      
+      this.samplers.set(category, sampler);
+    }
+    return this.samplers.get(category)!;
+  }
+
+  /**
+   * Play a drum sound based on MIDI note number using sampler
+   */
+  private playDrumSound(midiNote: number, time: number, velocity: number) {
+    if (!this.drumSampler) {
+      this.initDrumSampler();
+    }
     
-    // Load samples (removed console.log for performance)
+    // Map MIDI drum notes to sampler note names
+    // General MIDI drum map: https://en.wikipedia.org/wiki/General_MIDI#Percussion
+    const drumNoteMap: { [key: number]: string } = {
+      35: 'C1',  // Acoustic Bass Drum -> C1 (kick)
+      36: 'C1',  // Bass Drum 1 -> C1 (kick)
+      38: 'D1',  // Acoustic Snare -> D1 (snare)
+      40: 'D1',  // Electric Snare -> D1 (snare)
+      42: 'E1',  // Closed Hi-Hat -> E1 (hihat)
+      44: 'E1',  // Pedal Hi-Hat -> E1 (hihat)
+      46: 'E1',  // Open Hi-Hat -> E1 (hihat)
+      47: 'G1',  // Low-Mid Tom -> G1 (tom)
+      48: 'G1',  // Hi-Mid Tom -> G1 (tom)
+      49: 'F1',  // Crash Cymbal 1 -> F1 (crash)
+      51: 'F1',  // Ride Cymbal 1 -> F1 (crash)
+      57: 'F1',  // Crash Cymbal 2 -> F1 (crash)
+    };
+
+    // Get the sampler note for this MIDI drum note, default to C1 (kick)
+    const samplerNote = drumNoteMap[midiNote] || 'C1';
+    
+    // Convert MIDI note to frequency to determine pitch offset
+    // For drums, we want different pitches for different sounds
+    let pitchOffset = 0;
+    if (samplerNote === 'C1') {
+      // Kick - very low
+      pitchOffset = -24; // 2 octaves down
+    } else if (samplerNote === 'D1') {
+      // Snare - mid-low
+      pitchOffset = -12; // 1 octave down
+    } else if (samplerNote === 'E1') {
+      // Hi-hat - high
+      pitchOffset = 12; // 1 octave up
+    } else if (samplerNote === 'F1') {
+      // Crash - very high
+      pitchOffset = 24; // 2 octaves up
+    } else if (samplerNote === 'G1') {
+      // Tom - mid
+      pitchOffset = 0; // Same pitch
+    }
+    
+    // Calculate the actual note to play
+    const baseFreq = Tone.Frequency(samplerNote).toFrequency();
+    const targetFreq = baseFreq * Math.pow(2, pitchOffset / 12);
+    const targetNote = Tone.Frequency(targetFreq).toNote();
+    
+    // Use short duration for drums
+    const duration = samplerNote === 'F1' ? 0.3 : 0.1; // Longer for crashes
+    
+    // Trigger the sampler
+    this.drumSampler!.triggerAttackRelease(targetNote, duration, time, velocity);
+  }
+
+  /**
+   * Get the instrument category for a track
+   */
+  private getTrackCategory(trackId?: number): InstrumentCategory {
+    if (!this.sheet?.tracks || trackId === undefined) {
+      return 'piano'; // Default
+    }
+    
+    const track = this.sheet.tracks.find(t => t.id === trackId);
+    if (!track) {
+      return 'piano';
+    }
+    
+    return getInstrumentCategory(track.programNumber, track.channel);
   }
 
   async loadSheet(sheet: Sheet) {
@@ -98,6 +214,7 @@ export class AudioPlayer {
       duration: number;
       velocity: number;
       pitch: number; // MIDI note number
+      trackId?: number; // Track ID for instrument routing
     }
     
     const partEvents: Array<[number, NoteEvent]> = [];
@@ -140,6 +257,7 @@ export class AudioPlayer {
         duration: durationSeconds,
         velocity,
         pitch: note.pitch, // Store MIDI pitch for sampler
+        trackId: note.trackId, // Store track ID for instrument routing
       }]);
     });
 
@@ -155,11 +273,20 @@ export class AudioPlayer {
     // Create part with all events
     // The 'time' parameter is already in Transport time - use it directly
     // Tone.js handles lookahead internally for smooth scheduling
-    const part = new Tone.Part((time: number, value: NoteEvent) => {
-      // Convert MIDI note number to note name for sampler
-      const noteName = Tone.Frequency(value.pitch, 'midi').toNote();
-      // Use the time directly - Tone.js will handle scheduling
-      this.sampler.triggerAttackRelease(noteName, value.duration, time, value.velocity);
+    const part = new Tone.Part((time: number, value: NoteEvent & { trackId?: number }) => {
+      // Get the appropriate sampler for this track's instrument
+      const category = this.getTrackCategory(value.trackId);
+      
+      // Drums need special handling - use drum sounds instead of pitched samples
+      if (category === 'drums') {
+        this.playDrumSound(value.pitch, time, value.velocity);
+      } else {
+        const sampler = this.getSampler(category);
+        // Convert MIDI note number to note name for sampler
+        const noteName = Tone.Frequency(value.pitch, 'midi').toNote();
+        // Use the time directly - Tone.js will handle scheduling
+        sampler.triggerAttackRelease(noteName, value.duration, time, value.velocity);
+      }
     }, partEvents);
 
     // Store the part for cleanup
@@ -286,7 +413,13 @@ export class AudioPlayer {
 
   dispose() {
     this.stop();
-    this.sampler.dispose();
+    // Dispose all samplers
+    this.samplers.forEach(sampler => sampler.dispose());
+    this.samplers.clear();
+    // Dispose drum sampler
+    if (this.drumSampler) {
+      this.drumSampler.dispose();
+    }
   }
 }
 

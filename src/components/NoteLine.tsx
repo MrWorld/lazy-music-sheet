@@ -156,6 +156,8 @@ export function NoteLine({
         opacity: isSelected ? 0.9 : 0.7,
         borderLeft: '2px solid rgba(0, 0, 0, 0.3)',
         borderRight: '2px solid rgba(0, 0, 0, 0.3)',
+        borderTop: '2px solid rgba(0, 0, 0, 0.3)',
+        borderBottom: '2px solid rgba(0, 0, 0, 0.3)',
       }}
       onMouseDown={handleMouseDown}
       onContextMenu={handleContextMenu}
