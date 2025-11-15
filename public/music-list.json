@@ -4130,6 +4130,104 @@
     "filename": "Black_Velvet.3.mid"
   },
   {
+    "id": "albeniz-alb_esp1-2191-0",
+    "artist": "albeniz",
+    "title": "alb esp1",
+    "path": "archive/albeniz/alb_esp1.mid",
+    "filename": "alb_esp1.mid"
+  },
+  {
+    "id": "albeniz-alb_esp2-2191-1",
+    "artist": "albeniz",
+    "title": "alb esp2",
+    "path": "archive/albeniz/alb_esp2.mid",
+    "filename": "alb_esp2.mid"
+  },
+  {
+    "id": "albeniz-alb_esp3-2191-2",
+    "artist": "albeniz",
+    "title": "alb esp3",
+    "path": "archive/albeniz/alb_esp3.mid",
+    "filename": "alb_esp3.mid"
+  },
+  {
+    "id": "albeniz-alb_esp4-2191-3",
+    "artist": "albeniz",
+    "title": "alb esp4",
+    "path": "archive/albeniz/alb_esp4.mid",
+    "filename": "alb_esp4.mid"
+  },
+  {
+    "id": "albeniz-alb_esp5-2191-4",
+    "artist": "albeniz",
+    "title": "alb esp5",
+    "path": "archive/albeniz/alb_esp5.mid",
+    "filename": "alb_esp5.mid"
+  },
+  {
+    "id": "albeniz-alb_esp6-2191-5",
+    "artist": "albeniz",
+    "title": "alb esp6",
+    "path": "archive/albeniz/alb_esp6.mid",
+    "filename": "alb_esp6.mid"
+  },
+  {
+    "id": "albeniz-alb_se1-2191-6",
+    "artist": "albeniz",
+    "title": "alb se1",
+    "path": "archive/albeniz/alb_se1.mid",
+    "filename": "alb_se1.mid"
+  },
+  {
+    "id": "albeniz-alb_se2-2191-7",
+    "artist": "albeniz",
+    "title": "alb se2",
+    "path": "archive/albeniz/alb_se2.mid",
+    "filename": "alb_se2.mid"
+  },
+  {
+    "id": "albeniz-alb_se3-2191-8",
+    "artist": "albeniz",
+    "title": "alb se3",
+    "path": "archive/albeniz/alb_se3.mid",
+    "filename": "alb_se3.mid"
+  },
+  {
+    "id": "albeniz-alb_se4-2191-9",
+    "artist": "albeniz",
+    "title": "alb se4",
+    "path": "archive/albeniz/alb_se4.mid",
+    "filename": "alb_se4.mid"
+  },
+  {
+    "id": "albeniz-alb_se5-2191-10",
+    "artist": "albeniz",
+    "title": "alb se5",
+    "path": "archive/albeniz/alb_se5.mid",
+    "filename": "alb_se5.mid"
+  },
+  {
+    "id": "albeniz-alb_se6-2191-11",
+    "artist": "albeniz",
+    "title": "alb se6",
+    "path": "archive/albeniz/alb_se6.mid",
+    "filename": "alb_se6.mid"
+  },
+  {
+    "id": "albeniz-alb_se7-2191-12",
+    "artist": "albeniz",
+    "title": "alb se7",
+    "path": "archive/albeniz/alb_se7.mid",
+    "filename": "alb_se7.mid"
+  },
+  {
+    "id": "albeniz-alb_se8-2191-13",
+    "artist": "albeniz",
+    "title": "alb se8",
+    "path": "archive/albeniz/alb_se8.mid",
+    "filename": "alb_se8.mid"
+  },
+  {
     "id": "Albert_Hammond-It_Never_Rains_in_Southern_Californa-56-2",
     "artist": "Albert Hammond",
     "title": "It Never Rains in Southern Californa",
@@ -8022,6 +8120,27 @@
     "filename": "Yes_Sir_I_Can_Boogie.mid"
   },
   {
+    "id": "bach-bach_846-2192-0",
+    "artist": "bach",
+    "title": "bach 846",
+    "path": "archive/bach/bach_846.mid",
+    "filename": "bach_846.mid"
+  },
+  {
+    "id": "bach-bach_847-2192-1",
+    "artist": "bach",
+    "title": "bach 847",
+    "path": "archive/bach/bach_847.mid",
+    "filename": "bach_847.mid"
+  },
+  {
+    "id": "bach-bach_850-2192-2",
+    "artist": "bach",
+    "title": "bach 850",
+    "path": "archive/bach/bach_850.mid",
+    "filename": "bach_850.mid"
+  },
+  {
     "id": "Bach_Johann_Sebastian-2-Part_Invention_No._1_in_C_major,_BWV_772-169-4",
     "artist": "Bach Johann Sebastian",
     "title": "2-Part Invention No. 1 in C major, BWV 772",
@@ -9287,6 +9406,13 @@
     "title": "Questo piccolo grande amore",
     "path": "archive/Baglioni_Claudio/Questo_piccolo_grande_amore.mid",
     "filename": "Questo_piccolo_grande_amore.mid"
+  },
+  {
+    "id": "balakir-islamei-2193-0",
+    "artist": "balakir",
+    "title": "islamei",
+    "path": "archive/balakir/islamei.mid",
+    "filename": "islamei.mid"
   },
   {
     "id": "Baltimora-Tarzan_Boy-177-0",
@@ -11940,6 +12066,209 @@
     "title": "You Win Again.1",
     "path": "archive/Bee_Gees/You_Win_Again.1.mid",
     "filename": "You_Win_Again.1.mid"
+  },
+  {
+    "id": "beeth-appass_1-2194-0",
+    "artist": "beeth",
+    "title": "appass 1",
+    "path": "archive/beeth/appass_1.mid",
+    "filename": "appass_1.mid"
+  },
+  {
+    "id": "beeth-appass_2-2194-1",
+    "artist": "beeth",
+    "title": "appass 2",
+    "path": "archive/beeth/appass_2.mid",
+    "filename": "appass_2.mid"
+  },
+  {
+    "id": "beeth-appass_3-2194-2",
+    "artist": "beeth",
+    "title": "appass 3",
+    "path": "archive/beeth/appass_3.mid",
+    "filename": "appass_3.mid"
+  },
+  {
+    "id": "beeth-beethoven_hammerklavier_1-2194-3",
+    "artist": "beeth",
+    "title": "beethoven hammerklavier 1",
+    "path": "archive/beeth/beethoven_hammerklavier_1.mid",
+    "filename": "beethoven_hammerklavier_1.mid"
+  },
+  {
+    "id": "beeth-beethoven_hammerklavier_2-2194-4",
+    "artist": "beeth",
+    "title": "beethoven hammerklavier 2",
+    "path": "archive/beeth/beethoven_hammerklavier_2.mid",
+    "filename": "beethoven_hammerklavier_2.mid"
+  },
+  {
+    "id": "beeth-beethoven_hammerklavier_3-2194-5",
+    "artist": "beeth",
+    "title": "beethoven hammerklavier 3",
+    "path": "archive/beeth/beethoven_hammerklavier_3.mid",
+    "filename": "beethoven_hammerklavier_3.mid"
+  },
+  {
+    "id": "beeth-beethoven_hammerklavier_4-2194-6",
+    "artist": "beeth",
+    "title": "beethoven hammerklavier 4",
+    "path": "archive/beeth/beethoven_hammerklavier_4.mid",
+    "filename": "beethoven_hammerklavier_4.mid"
+  },
+  {
+    "id": "beeth-beethoven_les_adieux_1-2194-7",
+    "artist": "beeth",
+    "title": "beethoven les adieux 1",
+    "path": "archive/beeth/beethoven_les_adieux_1.mid",
+    "filename": "beethoven_les_adieux_1.mid"
+  },
+  {
+    "id": "beeth-beethoven_les_adieux_2-2194-8",
+    "artist": "beeth",
+    "title": "beethoven les adieux 2",
+    "path": "archive/beeth/beethoven_les_adieux_2.mid",
+    "filename": "beethoven_les_adieux_2.mid"
+  },
+  {
+    "id": "beeth-beethoven_les_adieux_3-2194-9",
+    "artist": "beeth",
+    "title": "beethoven les adieux 3",
+    "path": "archive/beeth/beethoven_les_adieux_3.mid",
+    "filename": "beethoven_les_adieux_3.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus10_1-2194-10",
+    "artist": "beeth",
+    "title": "beethoven opus10 1",
+    "path": "archive/beeth/beethoven_opus10_1.mid",
+    "filename": "beethoven_opus10_1.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus10_2-2194-11",
+    "artist": "beeth",
+    "title": "beethoven opus10 2",
+    "path": "archive/beeth/beethoven_opus10_2.mid",
+    "filename": "beethoven_opus10_2.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus10_3-2194-12",
+    "artist": "beeth",
+    "title": "beethoven opus10 3",
+    "path": "archive/beeth/beethoven_opus10_3.mid",
+    "filename": "beethoven_opus10_3.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus22_1-2194-13",
+    "artist": "beeth",
+    "title": "beethoven opus22 1",
+    "path": "archive/beeth/beethoven_opus22_1.mid",
+    "filename": "beethoven_opus22_1.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus22_2-2194-14",
+    "artist": "beeth",
+    "title": "beethoven opus22 2",
+    "path": "archive/beeth/beethoven_opus22_2.mid",
+    "filename": "beethoven_opus22_2.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus22_3-2194-15",
+    "artist": "beeth",
+    "title": "beethoven opus22 3",
+    "path": "archive/beeth/beethoven_opus22_3.mid",
+    "filename": "beethoven_opus22_3.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus22_4-2194-16",
+    "artist": "beeth",
+    "title": "beethoven opus22 4",
+    "path": "archive/beeth/beethoven_opus22_4.mid",
+    "filename": "beethoven_opus22_4.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus90_1-2194-17",
+    "artist": "beeth",
+    "title": "beethoven opus90 1",
+    "path": "archive/beeth/beethoven_opus90_1.mid",
+    "filename": "beethoven_opus90_1.mid"
+  },
+  {
+    "id": "beeth-beethoven_opus90_2-2194-18",
+    "artist": "beeth",
+    "title": "beethoven opus90 2",
+    "path": "archive/beeth/beethoven_opus90_2.mid",
+    "filename": "beethoven_opus90_2.mid"
+  },
+  {
+    "id": "beeth-elise-2194-19",
+    "artist": "beeth",
+    "title": "elise",
+    "path": "archive/beeth/elise.mid",
+    "filename": "elise.mid"
+  },
+  {
+    "id": "beeth-mond_1-2194-20",
+    "artist": "beeth",
+    "title": "mond 1",
+    "path": "archive/beeth/mond_1.mid",
+    "filename": "mond_1.mid"
+  },
+  {
+    "id": "beeth-mond_2-2194-21",
+    "artist": "beeth",
+    "title": "mond 2",
+    "path": "archive/beeth/mond_2.mid",
+    "filename": "mond_2.mid"
+  },
+  {
+    "id": "beeth-mond_3-2194-22",
+    "artist": "beeth",
+    "title": "mond 3",
+    "path": "archive/beeth/mond_3.mid",
+    "filename": "mond_3.mid"
+  },
+  {
+    "id": "beeth-pathetique_1-2194-23",
+    "artist": "beeth",
+    "title": "pathetique 1",
+    "path": "archive/beeth/pathetique_1.mid",
+    "filename": "pathetique_1.mid"
+  },
+  {
+    "id": "beeth-pathetique_2-2194-24",
+    "artist": "beeth",
+    "title": "pathetique 2",
+    "path": "archive/beeth/pathetique_2.mid",
+    "filename": "pathetique_2.mid"
+  },
+  {
+    "id": "beeth-pathetique_3-2194-25",
+    "artist": "beeth",
+    "title": "pathetique 3",
+    "path": "archive/beeth/pathetique_3.mid",
+    "filename": "pathetique_3.mid"
+  },
+  {
+    "id": "beeth-waldstein_1-2194-26",
+    "artist": "beeth",
+    "title": "waldstein 1",
+    "path": "archive/beeth/waldstein_1.mid",
+    "filename": "waldstein_1.mid"
+  },
+  {
+    "id": "beeth-waldstein_2-2194-27",
+    "artist": "beeth",
+    "title": "waldstein 2",
+    "path": "archive/beeth/waldstein_2.mid",
+    "filename": "waldstein_2.mid"
+  },
+  {
+    "id": "beeth-waldstein_3-2194-28",
+    "artist": "beeth",
+    "title": "waldstein 3",
+    "path": "archive/beeth/waldstein_3.mid",
+    "filename": "waldstein_3.mid"
   },
   {
     "id": "Bela_Bartok-10_Easy_Pieces_X._Bear_Dance-204-0",
@@ -14623,203 +14952,203 @@
     "filename": "No_Rain.1.mid"
   },
   {
-    "id": "blink-182-Adams_Song-2191-0",
+    "id": "blink-182-Adams_Song-2195-0",
     "artist": "blink-182",
     "title": "Adams Song",
     "path": "archive/blink-182/Adams_Song.mid",
     "filename": "Adams_Song.mid"
   },
   {
-    "id": "blink-182-Aliens_Exist-2191-1",
+    "id": "blink-182-Aliens_Exist-2195-1",
     "artist": "blink-182",
     "title": "Aliens Exist",
     "path": "archive/blink-182/Aliens_Exist.mid",
     "filename": "Aliens_Exist.mid"
   },
   {
-    "id": "blink-182-All_the_Small_Things-2191-5",
+    "id": "blink-182-All_the_Small_Things-2195-5",
     "artist": "blink-182",
     "title": "All the Small Things",
     "path": "archive/blink-182/All_the_Small_Things.mid",
     "filename": "All_the_Small_Things.mid"
   },
   {
-    "id": "blink-182-All_the_Small_Things.1-2191-2",
+    "id": "blink-182-All_the_Small_Things.1-2195-2",
     "artist": "blink-182",
     "title": "All the Small Things.1",
     "path": "archive/blink-182/All_the_Small_Things.1.mid",
     "filename": "All_the_Small_Things.1.mid"
   },
   {
-    "id": "blink-182-All_the_Small_Things.2-2191-3",
+    "id": "blink-182-All_the_Small_Things.2-2195-3",
     "artist": "blink-182",
     "title": "All the Small Things.2",
     "path": "archive/blink-182/All_the_Small_Things.2.mid",
     "filename": "All_the_Small_Things.2.mid"
   },
   {
-    "id": "blink-182-All_the_Small_Things.3-2191-4",
+    "id": "blink-182-All_the_Small_Things.3-2195-4",
     "artist": "blink-182",
     "title": "All the Small Things.3",
     "path": "archive/blink-182/All_the_Small_Things.3.mid",
     "filename": "All_the_Small_Things.3.mid"
   },
   {
-    "id": "blink-182-Anthem_Part_Two-2191-6",
+    "id": "blink-182-Anthem_Part_Two-2195-6",
     "artist": "blink-182",
     "title": "Anthem Part Two",
     "path": "archive/blink-182/Anthem_Part_Two.mid",
     "filename": "Anthem_Part_Two.mid"
   },
   {
-    "id": "blink-182-Dammit-2191-8",
+    "id": "blink-182-Dammit-2195-8",
     "artist": "blink-182",
     "title": "Dammit",
     "path": "archive/blink-182/Dammit.mid",
     "filename": "Dammit.mid"
   },
   {
-    "id": "blink-182-Dammit.1-2191-7",
+    "id": "blink-182-Dammit.1-2195-7",
     "artist": "blink-182",
     "title": "Dammit.1",
     "path": "archive/blink-182/Dammit.1.mid",
     "filename": "Dammit.1.mid"
   },
   {
-    "id": "blink-182-Dont_Leave_Me-2191-9",
+    "id": "blink-182-Dont_Leave_Me-2195-9",
     "artist": "blink-182",
     "title": "Dont Leave Me",
     "path": "archive/blink-182/Dont_Leave_Me.mid",
     "filename": "Dont_Leave_Me.mid"
   },
   {
-    "id": "blink-182-Dumpweed-2191-10",
+    "id": "blink-182-Dumpweed-2195-10",
     "artist": "blink-182",
     "title": "Dumpweed",
     "path": "archive/blink-182/Dumpweed.mid",
     "filename": "Dumpweed.mid"
   },
   {
-    "id": "blink-182-Every_Time_I_Look_for_You-2191-11",
+    "id": "blink-182-Every_Time_I_Look_for_You-2195-11",
     "artist": "blink-182",
     "title": "Every Time I Look for You",
     "path": "archive/blink-182/Every_Time_I_Look_for_You.mid",
     "filename": "Every_Time_I_Look_for_You.mid"
   },
   {
-    "id": "blink-182-First_Date-2191-12",
+    "id": "blink-182-First_Date-2195-12",
     "artist": "blink-182",
     "title": "First Date",
     "path": "archive/blink-182/First_Date.mid",
     "filename": "First_Date.mid"
   },
   {
-    "id": "blink-182-Josie-2191-14",
+    "id": "blink-182-Josie-2195-14",
     "artist": "blink-182",
     "title": "Josie",
     "path": "archive/blink-182/Josie.mid",
     "filename": "Josie.mid"
   },
   {
-    "id": "blink-182-Josie.1-2191-13",
+    "id": "blink-182-Josie.1-2195-13",
     "artist": "blink-182",
     "title": "Josie.1",
     "path": "archive/blink-182/Josie.1.mid",
     "filename": "Josie.1.mid"
   },
   {
-    "id": "blink-182-M+Ms-2191-15",
+    "id": "blink-182-M+Ms-2195-15",
     "artist": "blink-182",
     "title": "M+Ms",
     "path": "archive/blink-182/M+Ms.mid",
     "filename": "M+Ms.mid"
   },
   {
-    "id": "blink-182-Man_Overboard-2191-17",
+    "id": "blink-182-Man_Overboard-2195-17",
     "artist": "blink-182",
     "title": "Man Overboard",
     "path": "archive/blink-182/Man_Overboard.mid",
     "filename": "Man_Overboard.mid"
   },
   {
-    "id": "blink-182-Man_Overboard.1-2191-16",
+    "id": "blink-182-Man_Overboard.1-2195-16",
     "artist": "blink-182",
     "title": "Man Overboard.1",
     "path": "archive/blink-182/Man_Overboard.1.mid",
     "filename": "Man_Overboard.1.mid"
   },
   {
-    "id": "blink-182-Online_Songs-2191-18",
+    "id": "blink-182-Online_Songs-2195-18",
     "artist": "blink-182",
     "title": "Online Songs",
     "path": "archive/blink-182/Online_Songs.mid",
     "filename": "Online_Songs.mid"
   },
   {
-    "id": "blink-182-Please_Take_Me_Home-2191-19",
+    "id": "blink-182-Please_Take_Me_Home-2195-19",
     "artist": "blink-182",
     "title": "Please Take Me Home",
     "path": "archive/blink-182/Please_Take_Me_Home.mid",
     "filename": "Please_Take_Me_Home.mid"
   },
   {
-    "id": "blink-182-Reckless_Abandon-2191-20",
+    "id": "blink-182-Reckless_Abandon-2195-20",
     "artist": "blink-182",
     "title": "Reckless Abandon",
     "path": "archive/blink-182/Reckless_Abandon.mid",
     "filename": "Reckless_Abandon.mid"
   },
   {
-    "id": "blink-182-Shut_Up-2191-22",
+    "id": "blink-182-Shut_Up-2195-22",
     "artist": "blink-182",
     "title": "Shut Up",
     "path": "archive/blink-182/Shut_Up.mid",
     "filename": "Shut_Up.mid"
   },
   {
-    "id": "blink-182-Shut_Up.1-2191-21",
+    "id": "blink-182-Shut_Up.1-2195-21",
     "artist": "blink-182",
     "title": "Shut Up.1",
     "path": "archive/blink-182/Shut_Up.1.mid",
     "filename": "Shut_Up.1.mid"
   },
   {
-    "id": "blink-182-Story_of_a_Lonely_Guy-2191-23",
+    "id": "blink-182-Story_of_a_Lonely_Guy-2195-23",
     "artist": "blink-182",
     "title": "Story of a Lonely Guy",
     "path": "archive/blink-182/Story_of_a_Lonely_Guy.mid",
     "filename": "Story_of_a_Lonely_Guy.mid"
   },
   {
-    "id": "blink-182-What_Went_Wrong-2191-24",
+    "id": "blink-182-What_Went_Wrong-2195-24",
     "artist": "blink-182",
     "title": "What Went Wrong",
     "path": "archive/blink-182/What_Went_Wrong.mid",
     "filename": "What_Went_Wrong.mid"
   },
   {
-    "id": "blink-182-Whats_My_Age_Again-2191-28",
+    "id": "blink-182-Whats_My_Age_Again-2195-28",
     "artist": "blink-182",
     "title": "Whats My Age Again",
     "path": "archive/blink-182/Whats_My_Age_Again.mid",
     "filename": "Whats_My_Age_Again.mid"
   },
   {
-    "id": "blink-182-Whats_My_Age_Again.1-2191-25",
+    "id": "blink-182-Whats_My_Age_Again.1-2195-25",
     "artist": "blink-182",
     "title": "Whats My Age Again.1",
     "path": "archive/blink-182/Whats_My_Age_Again.1.mid",
     "filename": "Whats_My_Age_Again.1.mid"
   },
   {
-    "id": "blink-182-Whats_My_Age_Again.2-2191-26",
+    "id": "blink-182-Whats_My_Age_Again.2-2195-26",
     "artist": "blink-182",
     "title": "Whats My Age Again.2",
     "path": "archive/blink-182/Whats_My_Age_Again.2.mid",
     "filename": "Whats_My_Age_Again.2.mid"
   },
   {
-    "id": "blink-182-Whats_My_Age_Again.3-2191-27",
+    "id": "blink-182-Whats_My_Age_Again.3-2195-27",
     "artist": "blink-182",
     "title": "Whats My Age Again.3",
     "path": "archive/blink-182/Whats_My_Age_Again.3.mid",
@@ -16667,6 +16996,55 @@
     "filename": "Polovtsian_Dance.mid"
   },
   {
+    "id": "borodin copy-bor_ps1-2196-0",
+    "artist": "borodin copy",
+    "title": "bor ps1",
+    "path": "archive/borodin copy/bor_ps1.mid",
+    "filename": "bor_ps1.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps2-2196-1",
+    "artist": "borodin copy",
+    "title": "bor ps2",
+    "path": "archive/borodin copy/bor_ps2.mid",
+    "filename": "bor_ps2.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps3-2196-2",
+    "artist": "borodin copy",
+    "title": "bor ps3",
+    "path": "archive/borodin copy/bor_ps3.mid",
+    "filename": "bor_ps3.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps4-2196-3",
+    "artist": "borodin copy",
+    "title": "bor ps4",
+    "path": "archive/borodin copy/bor_ps4.mid",
+    "filename": "bor_ps4.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps5-2196-4",
+    "artist": "borodin copy",
+    "title": "bor ps5",
+    "path": "archive/borodin copy/bor_ps5.mid",
+    "filename": "bor_ps5.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps6-2196-5",
+    "artist": "borodin copy",
+    "title": "bor ps6",
+    "path": "archive/borodin copy/bor_ps6.mid",
+    "filename": "bor_ps6.mid"
+  },
+  {
+    "id": "borodin copy-bor_ps7-2196-6",
+    "artist": "borodin copy",
+    "title": "bor ps7",
+    "path": "archive/borodin copy/bor_ps7.mid",
+    "filename": "bor_ps7.mid"
+  },
+  {
     "id": "Boston-A_Man_Ill_Never_Be-305-0",
     "artist": "Boston",
     "title": "A Man Ill Never Be",
@@ -17274,6 +17652,76 @@
     "title": "What Can I Say",
     "path": "archive/Boz_Scaggs/What_Can_I_Say.mid",
     "filename": "What_Can_I_Say.mid"
+  },
+  {
+    "id": "brahms-br_im2-2197-1",
+    "artist": "brahms",
+    "title": "br im2",
+    "path": "archive/brahms/br_im2.mid",
+    "filename": "br_im2.mid"
+  },
+  {
+    "id": "brahms-br_im5-2197-2",
+    "artist": "brahms",
+    "title": "br im5",
+    "path": "archive/brahms/br_im5.mid",
+    "filename": "br_im5.mid"
+  },
+  {
+    "id": "brahms-BR_IM6-2197-0",
+    "artist": "brahms",
+    "title": "BR IM6",
+    "path": "archive/brahms/BR_IM6.MID",
+    "filename": "BR_IM6.MID"
+  },
+  {
+    "id": "brahms-br_rhap-2197-3",
+    "artist": "brahms",
+    "title": "br rhap",
+    "path": "archive/brahms/br_rhap.mid",
+    "filename": "br_rhap.mid"
+  },
+  {
+    "id": "brahms-brahms_opus1_1-2197-6",
+    "artist": "brahms",
+    "title": "brahms opus1 1",
+    "path": "archive/brahms/brahms_opus1_1.mid",
+    "filename": "brahms_opus1_1.mid"
+  },
+  {
+    "id": "brahms-brahms_opus1_2-2197-7",
+    "artist": "brahms",
+    "title": "brahms opus1 2",
+    "path": "archive/brahms/brahms_opus1_2.mid",
+    "filename": "brahms_opus1_2.mid"
+  },
+  {
+    "id": "brahms-brahms_opus1_3-2197-8",
+    "artist": "brahms",
+    "title": "brahms opus1 3",
+    "path": "archive/brahms/brahms_opus1_3.mid",
+    "filename": "brahms_opus1_3.mid"
+  },
+  {
+    "id": "brahms-brahms_opus1_4-2197-9",
+    "artist": "brahms",
+    "title": "brahms opus1 4",
+    "path": "archive/brahms/brahms_opus1_4.mid",
+    "filename": "brahms_opus1_4.mid"
+  },
+  {
+    "id": "brahms-brahms_opus117_1-2197-4",
+    "artist": "brahms",
+    "title": "brahms opus117 1",
+    "path": "archive/brahms/brahms_opus117_1.mid",
+    "filename": "brahms_opus117_1.mid"
+  },
+  {
+    "id": "brahms-brahms_opus117_2-2197-5",
+    "artist": "brahms",
+    "title": "brahms opus117 2",
+    "path": "archive/brahms/brahms_opus117_2.mid",
+    "filename": "brahms_opus117_2.mid"
   },
   {
     "id": "Brandy-Almost_Doesnt_Count-312-0",
@@ -20942,6 +21390,69 @@
     "title": "Nut Rocker",
     "path": "archive/Bumble_B/Nut_Rocker.mid",
     "filename": "Nut_Rocker.mid"
+  },
+  {
+    "id": "burgm-burg_agitato-2198-0",
+    "artist": "burgm",
+    "title": "burg agitato",
+    "path": "archive/burgm/burg_agitato.mid",
+    "filename": "burg_agitato.mid"
+  },
+  {
+    "id": "burgm-burg_erwachen-2198-1",
+    "artist": "burgm",
+    "title": "burg erwachen",
+    "path": "archive/burgm/burg_erwachen.mid",
+    "filename": "burg_erwachen.mid"
+  },
+  {
+    "id": "burgm-burg_geschwindigkeit-2198-2",
+    "artist": "burgm",
+    "title": "burg geschwindigkeit",
+    "path": "archive/burgm/burg_geschwindigkeit.mid",
+    "filename": "burg_geschwindigkeit.mid"
+  },
+  {
+    "id": "burgm-burg_gewitter-2198-3",
+    "artist": "burgm",
+    "title": "burg gewitter",
+    "path": "archive/burgm/burg_gewitter.mid",
+    "filename": "burg_gewitter.mid"
+  },
+  {
+    "id": "burgm-burg_perlen-2198-4",
+    "artist": "burgm",
+    "title": "burg perlen",
+    "path": "archive/burgm/burg_perlen.mid",
+    "filename": "burg_perlen.mid"
+  },
+  {
+    "id": "burgm-burg_quelle-2198-5",
+    "artist": "burgm",
+    "title": "burg quelle",
+    "path": "archive/burgm/burg_quelle.mid",
+    "filename": "burg_quelle.mid"
+  },
+  {
+    "id": "burgm-burg_spinnerlied-2198-6",
+    "artist": "burgm",
+    "title": "burg spinnerlied",
+    "path": "archive/burgm/burg_spinnerlied.mid",
+    "filename": "burg_spinnerlied.mid"
+  },
+  {
+    "id": "burgm-burg_sylphen-2198-7",
+    "artist": "burgm",
+    "title": "burg sylphen",
+    "path": "archive/burgm/burg_sylphen.mid",
+    "filename": "burg_sylphen.mid"
+  },
+  {
+    "id": "burgm-burg_trennung-2198-8",
+    "artist": "burgm",
+    "title": "burg trennung",
+    "path": "archive/burgm/burg_trennung.mid",
+    "filename": "burg_trennung.mid"
   },
   {
     "id": "Burt_Bacharach-Alfie-346-0",
@@ -25016,6 +25527,342 @@
     "title": "Everybody Salsa",
     "path": "archive/Chocolate/Everybody_Salsa.mid",
     "filename": "Everybody_Salsa.mid"
+  },
+  {
+    "id": "chopin-chp_op18-2199-0",
+    "artist": "chopin",
+    "title": "chp op18",
+    "path": "archive/chopin/chp_op18.mid",
+    "filename": "chp_op18.mid"
+  },
+  {
+    "id": "chopin-chp_op31-2199-1",
+    "artist": "chopin",
+    "title": "chp op31",
+    "path": "archive/chopin/chp_op31.mid",
+    "filename": "chp_op31.mid"
+  },
+  {
+    "id": "chopin-chpn_op10_e01-2199-26",
+    "artist": "chopin",
+    "title": "chpn op10 e01",
+    "path": "archive/chopin/chpn_op10_e01.mid",
+    "filename": "chpn_op10_e01.mid"
+  },
+  {
+    "id": "chopin-chpn_op10_e05-2199-27",
+    "artist": "chopin",
+    "title": "chpn op10 e05",
+    "path": "archive/chopin/chpn_op10_e05.mid",
+    "filename": "chpn_op10_e05.mid"
+  },
+  {
+    "id": "chopin-chpn_op10_e12-2199-28",
+    "artist": "chopin",
+    "title": "chpn op10 e12",
+    "path": "archive/chopin/chpn_op10_e12.mid",
+    "filename": "chpn_op10_e12.mid"
+  },
+  {
+    "id": "chopin-chpn_op23-2199-29",
+    "artist": "chopin",
+    "title": "chpn op23",
+    "path": "archive/chopin/chpn_op23.mid",
+    "filename": "chpn_op23.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e1-2199-30",
+    "artist": "chopin",
+    "title": "chpn op25 e1",
+    "path": "archive/chopin/chpn_op25_e1.mid",
+    "filename": "chpn_op25_e1.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e11-2199-31",
+    "artist": "chopin",
+    "title": "chpn op25 e11",
+    "path": "archive/chopin/chpn_op25_e11.mid",
+    "filename": "chpn_op25_e11.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e12-2199-32",
+    "artist": "chopin",
+    "title": "chpn op25 e12",
+    "path": "archive/chopin/chpn_op25_e12.mid",
+    "filename": "chpn_op25_e12.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e2-2199-33",
+    "artist": "chopin",
+    "title": "chpn op25 e2",
+    "path": "archive/chopin/chpn_op25_e2.mid",
+    "filename": "chpn_op25_e2.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e3-2199-34",
+    "artist": "chopin",
+    "title": "chpn op25 e3",
+    "path": "archive/chopin/chpn_op25_e3.mid",
+    "filename": "chpn_op25_e3.mid"
+  },
+  {
+    "id": "chopin-chpn_op25_e4-2199-35",
+    "artist": "chopin",
+    "title": "chpn op25 e4",
+    "path": "archive/chopin/chpn_op25_e4.mid",
+    "filename": "chpn_op25_e4.mid"
+  },
+  {
+    "id": "chopin-chpn_op27_1-2199-36",
+    "artist": "chopin",
+    "title": "chpn op27 1",
+    "path": "archive/chopin/chpn_op27_1.mid",
+    "filename": "chpn_op27_1.mid"
+  },
+  {
+    "id": "chopin-chpn_op27_2-2199-37",
+    "artist": "chopin",
+    "title": "chpn op27 2",
+    "path": "archive/chopin/chpn_op27_2.mid",
+    "filename": "chpn_op27_2.mid"
+  },
+  {
+    "id": "chopin-chpn_op33_2-2199-38",
+    "artist": "chopin",
+    "title": "chpn op33 2",
+    "path": "archive/chopin/chpn_op33_2.mid",
+    "filename": "chpn_op33_2.mid"
+  },
+  {
+    "id": "chopin-chpn_op33_4-2199-39",
+    "artist": "chopin",
+    "title": "chpn op33 4",
+    "path": "archive/chopin/chpn_op33_4.mid",
+    "filename": "chpn_op33_4.mid"
+  },
+  {
+    "id": "chopin-chpn_op35_1-2199-40",
+    "artist": "chopin",
+    "title": "chpn op35 1",
+    "path": "archive/chopin/chpn_op35_1.mid",
+    "filename": "chpn_op35_1.mid"
+  },
+  {
+    "id": "chopin-chpn_op35_2-2199-41",
+    "artist": "chopin",
+    "title": "chpn op35 2",
+    "path": "archive/chopin/chpn_op35_2.mid",
+    "filename": "chpn_op35_2.mid"
+  },
+  {
+    "id": "chopin-chpn_op35_3-2199-42",
+    "artist": "chopin",
+    "title": "chpn op35 3",
+    "path": "archive/chopin/chpn_op35_3.mid",
+    "filename": "chpn_op35_3.mid"
+  },
+  {
+    "id": "chopin-chpn_op35_4-2199-43",
+    "artist": "chopin",
+    "title": "chpn op35 4",
+    "path": "archive/chopin/chpn_op35_4.mid",
+    "filename": "chpn_op35_4.mid"
+  },
+  {
+    "id": "chopin-chpn_op53-2199-44",
+    "artist": "chopin",
+    "title": "chpn op53",
+    "path": "archive/chopin/chpn_op53.mid",
+    "filename": "chpn_op53.mid"
+  },
+  {
+    "id": "chopin-chpn_op66-2199-45",
+    "artist": "chopin",
+    "title": "chpn op66",
+    "path": "archive/chopin/chpn_op66.mid",
+    "filename": "chpn_op66.mid"
+  },
+  {
+    "id": "chopin-chpn_op7_1-2199-46",
+    "artist": "chopin",
+    "title": "chpn op7 1",
+    "path": "archive/chopin/chpn_op7_1.mid",
+    "filename": "chpn_op7_1.mid"
+  },
+  {
+    "id": "chopin-chpn_op7_2-2199-47",
+    "artist": "chopin",
+    "title": "chpn op7 2",
+    "path": "archive/chopin/chpn_op7_2.mid",
+    "filename": "chpn_op7_2.mid"
+  },
+  {
+    "id": "chopin-chpn-p1-2199-2",
+    "artist": "chopin",
+    "title": "chpn-p1",
+    "path": "archive/chopin/chpn-p1.mid",
+    "filename": "chpn-p1.mid"
+  },
+  {
+    "id": "chopin-chpn-p10-2199-3",
+    "artist": "chopin",
+    "title": "chpn-p10",
+    "path": "archive/chopin/chpn-p10.mid",
+    "filename": "chpn-p10.mid"
+  },
+  {
+    "id": "chopin-chpn-p11-2199-4",
+    "artist": "chopin",
+    "title": "chpn-p11",
+    "path": "archive/chopin/chpn-p11.mid",
+    "filename": "chpn-p11.mid"
+  },
+  {
+    "id": "chopin-chpn-p12-2199-5",
+    "artist": "chopin",
+    "title": "chpn-p12",
+    "path": "archive/chopin/chpn-p12.mid",
+    "filename": "chpn-p12.mid"
+  },
+  {
+    "id": "chopin-chpn-p13-2199-6",
+    "artist": "chopin",
+    "title": "chpn-p13",
+    "path": "archive/chopin/chpn-p13.mid",
+    "filename": "chpn-p13.mid"
+  },
+  {
+    "id": "chopin-chpn-p14-2199-7",
+    "artist": "chopin",
+    "title": "chpn-p14",
+    "path": "archive/chopin/chpn-p14.mid",
+    "filename": "chpn-p14.mid"
+  },
+  {
+    "id": "chopin-chpn-p15-2199-8",
+    "artist": "chopin",
+    "title": "chpn-p15",
+    "path": "archive/chopin/chpn-p15.mid",
+    "filename": "chpn-p15.mid"
+  },
+  {
+    "id": "chopin-chpn-p16-2199-9",
+    "artist": "chopin",
+    "title": "chpn-p16",
+    "path": "archive/chopin/chpn-p16.mid",
+    "filename": "chpn-p16.mid"
+  },
+  {
+    "id": "chopin-chpn-p17-2199-10",
+    "artist": "chopin",
+    "title": "chpn-p17",
+    "path": "archive/chopin/chpn-p17.mid",
+    "filename": "chpn-p17.mid"
+  },
+  {
+    "id": "chopin-chpn-p18-2199-11",
+    "artist": "chopin",
+    "title": "chpn-p18",
+    "path": "archive/chopin/chpn-p18.mid",
+    "filename": "chpn-p18.mid"
+  },
+  {
+    "id": "chopin-chpn-p19-2199-12",
+    "artist": "chopin",
+    "title": "chpn-p19",
+    "path": "archive/chopin/chpn-p19.mid",
+    "filename": "chpn-p19.mid"
+  },
+  {
+    "id": "chopin-chpn-p2-2199-13",
+    "artist": "chopin",
+    "title": "chpn-p2",
+    "path": "archive/chopin/chpn-p2.mid",
+    "filename": "chpn-p2.mid"
+  },
+  {
+    "id": "chopin-chpn-p20-2199-14",
+    "artist": "chopin",
+    "title": "chpn-p20",
+    "path": "archive/chopin/chpn-p20.mid",
+    "filename": "chpn-p20.mid"
+  },
+  {
+    "id": "chopin-chpn-p21-2199-15",
+    "artist": "chopin",
+    "title": "chpn-p21",
+    "path": "archive/chopin/chpn-p21.mid",
+    "filename": "chpn-p21.mid"
+  },
+  {
+    "id": "chopin-chpn-p22-2199-16",
+    "artist": "chopin",
+    "title": "chpn-p22",
+    "path": "archive/chopin/chpn-p22.mid",
+    "filename": "chpn-p22.mid"
+  },
+  {
+    "id": "chopin-chpn-p23-2199-17",
+    "artist": "chopin",
+    "title": "chpn-p23",
+    "path": "archive/chopin/chpn-p23.mid",
+    "filename": "chpn-p23.mid"
+  },
+  {
+    "id": "chopin-chpn-p24-2199-18",
+    "artist": "chopin",
+    "title": "chpn-p24",
+    "path": "archive/chopin/chpn-p24.mid",
+    "filename": "chpn-p24.mid"
+  },
+  {
+    "id": "chopin-chpn-p3-2199-19",
+    "artist": "chopin",
+    "title": "chpn-p3",
+    "path": "archive/chopin/chpn-p3.mid",
+    "filename": "chpn-p3.mid"
+  },
+  {
+    "id": "chopin-chpn-p4-2199-20",
+    "artist": "chopin",
+    "title": "chpn-p4",
+    "path": "archive/chopin/chpn-p4.mid",
+    "filename": "chpn-p4.mid"
+  },
+  {
+    "id": "chopin-chpn-p5-2199-21",
+    "artist": "chopin",
+    "title": "chpn-p5",
+    "path": "archive/chopin/chpn-p5.mid",
+    "filename": "chpn-p5.mid"
+  },
+  {
+    "id": "chopin-chpn-p6-2199-22",
+    "artist": "chopin",
+    "title": "chpn-p6",
+    "path": "archive/chopin/chpn-p6.mid",
+    "filename": "chpn-p6.mid"
+  },
+  {
+    "id": "chopin-chpn-p7-2199-23",
+    "artist": "chopin",
+    "title": "chpn-p7",
+    "path": "archive/chopin/chpn-p7.mid",
+    "filename": "chpn-p7.mid"
+  },
+  {
+    "id": "chopin-chpn-p8-2199-24",
+    "artist": "chopin",
+    "title": "chpn-p8",
+    "path": "archive/chopin/chpn-p8.mid",
+    "filename": "chpn-p8.mid"
+  },
+  {
+    "id": "chopin-chpn-p9-2199-25",
+    "artist": "chopin",
+    "title": "chpn-p9",
+    "path": "archive/chopin/chpn-p9.mid",
+    "filename": "chpn-p9.mid"
   },
   {
     "id": "Chopin_Frederic-Ballade_Nr.1_op.23_g-moll-421-0",
@@ -30583,7 +31430,7 @@
     "filename": "Tie_A_Yellow_Ribbon_Round_the_Old_Oak_Tree.mid"
   },
   {
-    "id": "dc_Talk-Jesus_Freak_Reprais_-2192-0",
+    "id": "dc_Talk-Jesus_Freak_Reprais_-2200-0",
     "artist": "dc Talk",
     "title": "Jesus Freak Reprais ",
     "path": "archive/dc_Talk/Jesus_Freak_Reprais_.mid",
@@ -30763,6 +31610,69 @@
     "title": "You Light Up My Life",
     "path": "archive/Debby_Boone/You_Light_Up_My_Life.mid",
     "filename": "You_Light_Up_My_Life.mid"
+  },
+  {
+    "id": "debussy-DEB_CLAI-2201-0",
+    "artist": "debussy",
+    "title": "DEB CLAI",
+    "path": "archive/debussy/DEB_CLAI.MID",
+    "filename": "DEB_CLAI.MID"
+  },
+  {
+    "id": "debussy-deb_menu-2201-2",
+    "artist": "debussy",
+    "title": "deb menu",
+    "path": "archive/debussy/deb_menu.mid",
+    "filename": "deb_menu.mid"
+  },
+  {
+    "id": "debussy-DEB_PASS-2201-1",
+    "artist": "debussy",
+    "title": "DEB PASS",
+    "path": "archive/debussy/DEB_PASS.MID",
+    "filename": "DEB_PASS.MID"
+  },
+  {
+    "id": "debussy-deb_prel-2201-3",
+    "artist": "debussy",
+    "title": "deb prel",
+    "path": "archive/debussy/deb_prel.mid",
+    "filename": "deb_prel.mid"
+  },
+  {
+    "id": "debussy-debussy_cc_1-2201-4",
+    "artist": "debussy",
+    "title": "debussy cc 1",
+    "path": "archive/debussy/debussy_cc_1.mid",
+    "filename": "debussy_cc_1.mid"
+  },
+  {
+    "id": "debussy-debussy_cc_2-2201-5",
+    "artist": "debussy",
+    "title": "debussy cc 2",
+    "path": "archive/debussy/debussy_cc_2.mid",
+    "filename": "debussy_cc_2.mid"
+  },
+  {
+    "id": "debussy-debussy_cc_3-2201-6",
+    "artist": "debussy",
+    "title": "debussy cc 3",
+    "path": "archive/debussy/debussy_cc_3.mid",
+    "filename": "debussy_cc_3.mid"
+  },
+  {
+    "id": "debussy-debussy_cc_4-2201-7",
+    "artist": "debussy",
+    "title": "debussy cc 4",
+    "path": "archive/debussy/debussy_cc_4.mid",
+    "filename": "debussy_cc_4.mid"
+  },
+  {
+    "id": "debussy-debussy_cc_6-2201-8",
+    "artist": "debussy",
+    "title": "debussy cc 6",
+    "path": "archive/debussy/debussy_cc_6.mid",
+    "filename": "debussy_cc_6.mid"
   },
   {
     "id": "Dee-Dont_Go_Breaking_My_Heart-555-0",
@@ -35707,7 +36617,7 @@
     "filename": "Telephone_Line.2.mid"
   },
   {
-    "id": "elgar-Pomp_and_Circumstances_March_No.1-2193-0",
+    "id": "elgar-Pomp_and_Circumstances_March_No.1-2202-0",
     "artist": "elgar",
     "title": "Pomp and Circumstances March No.1",
     "path": "archive/elgar/Pomp_and_Circumstances_March_No.1.mid",
@@ -46438,6 +47348,27 @@
     "filename": "Slave_to_the_Rhythm.mid"
   },
   {
+    "id": "granados-gra_esp_2-2203-0",
+    "artist": "granados",
+    "title": "gra esp 2",
+    "path": "archive/granados/gra_esp_2.mid",
+    "filename": "gra_esp_2.mid"
+  },
+  {
+    "id": "granados-gra_esp_3-2203-1",
+    "artist": "granados",
+    "title": "gra esp 3",
+    "path": "archive/granados/gra_esp_3.mid",
+    "filename": "gra_esp_3.mid"
+  },
+  {
+    "id": "granados-gra_esp_4-2203-2",
+    "artist": "granados",
+    "title": "gra esp 4",
+    "path": "archive/granados/gra_esp_4.mid",
+    "filename": "gra_esp_4.mid"
+  },
+  {
     "id": "Granados_Enrique-El_Pelele-846-0",
     "artist": "Granados Enrique",
     "title": "El Pelele",
@@ -47374,6 +48305,118 @@
     "title": "Banana Republic",
     "path": "archive/Gregori/Banana_Republic.mid",
     "filename": "Banana_Republic.mid"
+  },
+  {
+    "id": "grieg-grieg_album-2204-0",
+    "artist": "grieg",
+    "title": "grieg album",
+    "path": "archive/grieg/grieg_album.mid",
+    "filename": "grieg_album.mid"
+  },
+  {
+    "id": "grieg-grieg_berceuse-2204-1",
+    "artist": "grieg",
+    "title": "grieg berceuse",
+    "path": "archive/grieg/grieg_berceuse.mid",
+    "filename": "grieg_berceuse.mid"
+  },
+  {
+    "id": "grieg-grieg_brooklet-2204-2",
+    "artist": "grieg",
+    "title": "grieg brooklet",
+    "path": "archive/grieg/grieg_brooklet.mid",
+    "filename": "grieg_brooklet.mid"
+  },
+  {
+    "id": "grieg-grieg_butterfly-2204-3",
+    "artist": "grieg",
+    "title": "grieg butterfly",
+    "path": "archive/grieg/grieg_butterfly.mid",
+    "filename": "grieg_butterfly.mid"
+  },
+  {
+    "id": "grieg-grieg_elfentanz-2204-4",
+    "artist": "grieg",
+    "title": "grieg elfentanz",
+    "path": "archive/grieg/grieg_elfentanz.mid",
+    "filename": "grieg_elfentanz.mid"
+  },
+  {
+    "id": "grieg-grieg_halling-2204-5",
+    "artist": "grieg",
+    "title": "grieg halling",
+    "path": "archive/grieg/grieg_halling.mid",
+    "filename": "grieg_halling.mid"
+  },
+  {
+    "id": "grieg-grieg_kobold-2204-6",
+    "artist": "grieg",
+    "title": "grieg kobold",
+    "path": "archive/grieg/grieg_kobold.mid",
+    "filename": "grieg_kobold.mid"
+  },
+  {
+    "id": "grieg-grieg_march-2204-7",
+    "artist": "grieg",
+    "title": "grieg march",
+    "path": "archive/grieg/grieg_march.mid",
+    "filename": "grieg_march.mid"
+  },
+  {
+    "id": "grieg-grieg_once_upon_a_time-2204-8",
+    "artist": "grieg",
+    "title": "grieg once upon a time",
+    "path": "archive/grieg/grieg_once_upon_a_time.mid",
+    "filename": "grieg_once_upon_a_time.mid"
+  },
+  {
+    "id": "grieg-grieg_spring-2204-9",
+    "artist": "grieg",
+    "title": "grieg spring",
+    "path": "archive/grieg/grieg_spring.mid",
+    "filename": "grieg_spring.mid"
+  },
+  {
+    "id": "grieg-grieg_voeglein-2204-10",
+    "artist": "grieg",
+    "title": "grieg voeglein",
+    "path": "archive/grieg/grieg_voeglein.mid",
+    "filename": "grieg_voeglein.mid"
+  },
+  {
+    "id": "grieg-grieg_waechter-2204-11",
+    "artist": "grieg",
+    "title": "grieg waechter",
+    "path": "archive/grieg/grieg_waechter.mid",
+    "filename": "grieg_waechter.mid"
+  },
+  {
+    "id": "grieg-grieg_walzer-2204-12",
+    "artist": "grieg",
+    "title": "grieg walzer",
+    "path": "archive/grieg/grieg_walzer.mid",
+    "filename": "grieg_walzer.mid"
+  },
+  {
+    "id": "grieg-grieg_wanderer-2204-13",
+    "artist": "grieg",
+    "title": "grieg wanderer",
+    "path": "archive/grieg/grieg_wanderer.mid",
+    "filename": "grieg_wanderer.mid"
+  },
+  {
+    "id": "grieg-grieg_wedding-2204-14",
+    "artist": "grieg",
+    "title": "grieg wedding",
+    "path": "archive/grieg/grieg_wedding.mid",
+    "filename": "grieg_wedding.mid"
+  },
+  {
+    "id": "grieg-grieg_zwerge-2204-15",
+    "artist": "grieg",
+    "title": "grieg zwerge",
+    "path": "archive/grieg/grieg_zwerge.mid",
+    "filename": "grieg_zwerge.mid"
   },
   {
     "id": "Groove_Theory-Tell_Me-859-0",
@@ -48501,6 +49544,153 @@
     "title": "Sonate Hob XVI 6 Allegro",
     "path": "archive/Haydn/Sonate_Hob_XVI_6_Allegro.mid",
     "filename": "Sonate_Hob_XVI_6_Allegro.mid"
+  },
+  {
+    "id": "haydn copy-hay_40_1-2205-0",
+    "artist": "haydn copy",
+    "title": "hay 40 1",
+    "path": "archive/haydn copy/hay_40_1.mid",
+    "filename": "hay_40_1.mid"
+  },
+  {
+    "id": "haydn copy-hay_40_2-2205-1",
+    "artist": "haydn copy",
+    "title": "hay 40 2",
+    "path": "archive/haydn copy/hay_40_2.mid",
+    "filename": "hay_40_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_33_1-2205-2",
+    "artist": "haydn copy",
+    "title": "haydn 33 1",
+    "path": "archive/haydn copy/haydn_33_1.mid",
+    "filename": "haydn_33_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_33_2-2205-3",
+    "artist": "haydn copy",
+    "title": "haydn 33 2",
+    "path": "archive/haydn copy/haydn_33_2.mid",
+    "filename": "haydn_33_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_33_3-2205-4",
+    "artist": "haydn copy",
+    "title": "haydn 33 3",
+    "path": "archive/haydn copy/haydn_33_3.mid",
+    "filename": "haydn_33_3.mid"
+  },
+  {
+    "id": "haydn copy-haydn_35_1-2205-5",
+    "artist": "haydn copy",
+    "title": "haydn 35 1",
+    "path": "archive/haydn copy/haydn_35_1.mid",
+    "filename": "haydn_35_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_35_2-2205-6",
+    "artist": "haydn copy",
+    "title": "haydn 35 2",
+    "path": "archive/haydn copy/haydn_35_2.mid",
+    "filename": "haydn_35_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_35_3-2205-7",
+    "artist": "haydn copy",
+    "title": "haydn 35 3",
+    "path": "archive/haydn copy/haydn_35_3.mid",
+    "filename": "haydn_35_3.mid"
+  },
+  {
+    "id": "haydn copy-haydn_43_1-2205-8",
+    "artist": "haydn copy",
+    "title": "haydn 43 1",
+    "path": "archive/haydn copy/haydn_43_1.mid",
+    "filename": "haydn_43_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_43_2-2205-9",
+    "artist": "haydn copy",
+    "title": "haydn 43 2",
+    "path": "archive/haydn copy/haydn_43_2.mid",
+    "filename": "haydn_43_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_43_3-2205-10",
+    "artist": "haydn copy",
+    "title": "haydn 43 3",
+    "path": "archive/haydn copy/haydn_43_3.mid",
+    "filename": "haydn_43_3.mid"
+  },
+  {
+    "id": "haydn copy-haydn_7_1-2205-11",
+    "artist": "haydn copy",
+    "title": "haydn 7 1",
+    "path": "archive/haydn copy/haydn_7_1.mid",
+    "filename": "haydn_7_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_7_2-2205-12",
+    "artist": "haydn copy",
+    "title": "haydn 7 2",
+    "path": "archive/haydn copy/haydn_7_2.mid",
+    "filename": "haydn_7_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_7_3-2205-13",
+    "artist": "haydn copy",
+    "title": "haydn 7 3",
+    "path": "archive/haydn copy/haydn_7_3.mid",
+    "filename": "haydn_7_3.mid"
+  },
+  {
+    "id": "haydn copy-haydn_8_1-2205-14",
+    "artist": "haydn copy",
+    "title": "haydn 8 1",
+    "path": "archive/haydn copy/haydn_8_1.mid",
+    "filename": "haydn_8_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_8_2-2205-15",
+    "artist": "haydn copy",
+    "title": "haydn 8 2",
+    "path": "archive/haydn copy/haydn_8_2.mid",
+    "filename": "haydn_8_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_8_3-2205-16",
+    "artist": "haydn copy",
+    "title": "haydn 8 3",
+    "path": "archive/haydn copy/haydn_8_3.mid",
+    "filename": "haydn_8_3.mid"
+  },
+  {
+    "id": "haydn copy-haydn_8_4-2205-17",
+    "artist": "haydn copy",
+    "title": "haydn 8 4",
+    "path": "archive/haydn copy/haydn_8_4.mid",
+    "filename": "haydn_8_4.mid"
+  },
+  {
+    "id": "haydn copy-haydn_9_1-2205-18",
+    "artist": "haydn copy",
+    "title": "haydn 9 1",
+    "path": "archive/haydn copy/haydn_9_1.mid",
+    "filename": "haydn_9_1.mid"
+  },
+  {
+    "id": "haydn copy-haydn_9_2-2205-19",
+    "artist": "haydn copy",
+    "title": "haydn 9 2",
+    "path": "archive/haydn copy/haydn_9_2.mid",
+    "filename": "haydn_9_2.mid"
+  },
+  {
+    "id": "haydn copy-haydn_9_3-2205-20",
+    "artist": "haydn copy",
+    "title": "haydn 9 3",
+    "path": "archive/haydn copy/haydn_9_3.mid",
+    "filename": "haydn_9_3.mid"
   },
   {
     "id": "Heart-All_Eyes-887-0",
@@ -56441,14 +57631,14 @@
     "filename": "All_My_Life.mid"
   },
   {
-    "id": "k.d._lang-Constant_Craving-2194-1",
+    "id": "k.d._lang-Constant_Craving-2206-1",
     "artist": "k.d. lang",
     "title": "Constant Craving",
     "path": "archive/k.d._lang/Constant_Craving.mid",
     "filename": "Constant_Craving.mid"
   },
   {
-    "id": "k.d._lang-Constant_Craving.1-2194-0",
+    "id": "k.d._lang-Constant_Craving.1-2206-0",
     "artist": "k.d. lang",
     "title": "Constant Craving.1",
     "path": "archive/k.d._lang/Constant_Craving.1.mid",
@@ -60891,6 +62081,118 @@
     "title": "All Woman",
     "path": "archive/Lisa_Stansfield/All_Woman.mid",
     "filename": "All_Woman.mid"
+  },
+  {
+    "id": "liszt-liz_donjuan-2207-0",
+    "artist": "liszt",
+    "title": "liz donjuan",
+    "path": "archive/liszt/liz_donjuan.mid",
+    "filename": "liz_donjuan.mid"
+  },
+  {
+    "id": "liszt-liz_et_trans4-2207-7",
+    "artist": "liszt",
+    "title": "liz et trans4",
+    "path": "archive/liszt/liz_et_trans4.mid",
+    "filename": "liz_et_trans4.mid"
+  },
+  {
+    "id": "liszt-liz_et_trans5-2207-8",
+    "artist": "liszt",
+    "title": "liz et trans5",
+    "path": "archive/liszt/liz_et_trans5.mid",
+    "filename": "liz_et_trans5.mid"
+  },
+  {
+    "id": "liszt-liz_et_trans8-2207-9",
+    "artist": "liszt",
+    "title": "liz et trans8",
+    "path": "archive/liszt/liz_et_trans8.mid",
+    "filename": "liz_et_trans8.mid"
+  },
+  {
+    "id": "liszt-liz_et1-2207-1",
+    "artist": "liszt",
+    "title": "liz et1",
+    "path": "archive/liszt/liz_et1.mid",
+    "filename": "liz_et1.mid"
+  },
+  {
+    "id": "liszt-liz_et2-2207-2",
+    "artist": "liszt",
+    "title": "liz et2",
+    "path": "archive/liszt/liz_et2.mid",
+    "filename": "liz_et2.mid"
+  },
+  {
+    "id": "liszt-liz_et3-2207-3",
+    "artist": "liszt",
+    "title": "liz et3",
+    "path": "archive/liszt/liz_et3.mid",
+    "filename": "liz_et3.mid"
+  },
+  {
+    "id": "liszt-liz_et4-2207-4",
+    "artist": "liszt",
+    "title": "liz et4",
+    "path": "archive/liszt/liz_et4.mid",
+    "filename": "liz_et4.mid"
+  },
+  {
+    "id": "liszt-liz_et5-2207-5",
+    "artist": "liszt",
+    "title": "liz et5",
+    "path": "archive/liszt/liz_et5.mid",
+    "filename": "liz_et5.mid"
+  },
+  {
+    "id": "liszt-liz_et6-2207-6",
+    "artist": "liszt",
+    "title": "liz et6",
+    "path": "archive/liszt/liz_et6.mid",
+    "filename": "liz_et6.mid"
+  },
+  {
+    "id": "liszt-liz_liebestraum-2207-10",
+    "artist": "liszt",
+    "title": "liz liebestraum",
+    "path": "archive/liszt/liz_liebestraum.mid",
+    "filename": "liz_liebestraum.mid"
+  },
+  {
+    "id": "liszt-liz_rhap02-2207-11",
+    "artist": "liszt",
+    "title": "liz rhap02",
+    "path": "archive/liszt/liz_rhap02.mid",
+    "filename": "liz_rhap02.mid"
+  },
+  {
+    "id": "liszt-liz_rhap09-2207-12",
+    "artist": "liszt",
+    "title": "liz rhap09",
+    "path": "archive/liszt/liz_rhap09.mid",
+    "filename": "liz_rhap09.mid"
+  },
+  {
+    "id": "liszt-liz_rhap10-2207-13",
+    "artist": "liszt",
+    "title": "liz rhap10",
+    "path": "archive/liszt/liz_rhap10.mid",
+    "filename": "liz_rhap10.mid"
+  },
+  {
+    "id": "liszt-liz_rhap12-2207-14",
+    "artist": "liszt",
+    "title": "liz rhap12",
+    "path": "archive/liszt/liz_rhap12.mid",
+    "filename": "liz_rhap12.mid"
+  },
+  {
+    "id": "liszt-liz_rhap15-2207-15",
+    "artist": "liszt",
+    "title": "liz rhap15",
+    "path": "archive/liszt/liz_rhap15.mid",
+    "filename": "liz_rhap15.mid"
   },
   {
     "id": "Lit-My_Own_Worst_Enemy-1183-0",
@@ -66528,6 +67830,111 @@
     "filename": "The_Safety_Dance.mid"
   },
   {
+    "id": "mendelssohn-mendel_op19_1-2208-0",
+    "artist": "mendelssohn",
+    "title": "mendel op19 1",
+    "path": "archive/mendelssohn/mendel_op19_1.mid",
+    "filename": "mendel_op19_1.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op19_2-2208-1",
+    "artist": "mendelssohn",
+    "title": "mendel op19 2",
+    "path": "archive/mendelssohn/mendel_op19_2.mid",
+    "filename": "mendel_op19_2.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op19_3-2208-2",
+    "artist": "mendelssohn",
+    "title": "mendel op19 3",
+    "path": "archive/mendelssohn/mendel_op19_3.mid",
+    "filename": "mendel_op19_3.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op19_4-2208-3",
+    "artist": "mendelssohn",
+    "title": "mendel op19 4",
+    "path": "archive/mendelssohn/mendel_op19_4.mid",
+    "filename": "mendel_op19_4.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op19_5-2208-4",
+    "artist": "mendelssohn",
+    "title": "mendel op19 5",
+    "path": "archive/mendelssohn/mendel_op19_5.mid",
+    "filename": "mendel_op19_5.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op19_6-2208-5",
+    "artist": "mendelssohn",
+    "title": "mendel op19 6",
+    "path": "archive/mendelssohn/mendel_op19_6.mid",
+    "filename": "mendel_op19_6.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op30_1-2208-6",
+    "artist": "mendelssohn",
+    "title": "mendel op30 1",
+    "path": "archive/mendelssohn/mendel_op30_1.mid",
+    "filename": "mendel_op30_1.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op30_2-2208-7",
+    "artist": "mendelssohn",
+    "title": "mendel op30 2",
+    "path": "archive/mendelssohn/mendel_op30_2.mid",
+    "filename": "mendel_op30_2.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op30_3-2208-8",
+    "artist": "mendelssohn",
+    "title": "mendel op30 3",
+    "path": "archive/mendelssohn/mendel_op30_3.mid",
+    "filename": "mendel_op30_3.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op30_4-2208-9",
+    "artist": "mendelssohn",
+    "title": "mendel op30 4",
+    "path": "archive/mendelssohn/mendel_op30_4.mid",
+    "filename": "mendel_op30_4.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op30_5-2208-10",
+    "artist": "mendelssohn",
+    "title": "mendel op30 5",
+    "path": "archive/mendelssohn/mendel_op30_5.mid",
+    "filename": "mendel_op30_5.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op53_5-2208-11",
+    "artist": "mendelssohn",
+    "title": "mendel op53 5",
+    "path": "archive/mendelssohn/mendel_op53_5.mid",
+    "filename": "mendel_op53_5.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op62_3-2208-12",
+    "artist": "mendelssohn",
+    "title": "mendel op62 3",
+    "path": "archive/mendelssohn/mendel_op62_3.mid",
+    "filename": "mendel_op62_3.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op62_4-2208-13",
+    "artist": "mendelssohn",
+    "title": "mendel op62 4",
+    "path": "archive/mendelssohn/mendel_op62_4.mid",
+    "filename": "mendel_op62_4.mid"
+  },
+  {
+    "id": "mendelssohn-mendel_op62_5-2208-14",
+    "artist": "mendelssohn",
+    "title": "mendel op62 5",
+    "path": "archive/mendelssohn/mendel_op62_5.mid",
+    "filename": "mendel_op62_5.mid"
+  },
+  {
     "id": "Meredith_Brooks-Bitch-1303-0",
     "artist": "Meredith Brooks",
     "title": "Bitch",
@@ -69916,6 +71323,153 @@
     "filename": "Why_Worry.mid"
   },
   {
+    "id": "mozart-mz_311_1-2209-0",
+    "artist": "mozart",
+    "title": "mz 311 1",
+    "path": "archive/mozart/mz_311_1.mid",
+    "filename": "mz_311_1.mid"
+  },
+  {
+    "id": "mozart-mz_311_2-2209-1",
+    "artist": "mozart",
+    "title": "mz 311 2",
+    "path": "archive/mozart/mz_311_2.mid",
+    "filename": "mz_311_2.mid"
+  },
+  {
+    "id": "mozart-mz_311_3-2209-2",
+    "artist": "mozart",
+    "title": "mz 311 3",
+    "path": "archive/mozart/mz_311_3.mid",
+    "filename": "mz_311_3.mid"
+  },
+  {
+    "id": "mozart-mz_330_1-2209-3",
+    "artist": "mozart",
+    "title": "mz 330 1",
+    "path": "archive/mozart/mz_330_1.mid",
+    "filename": "mz_330_1.mid"
+  },
+  {
+    "id": "mozart-mz_330_2-2209-4",
+    "artist": "mozart",
+    "title": "mz 330 2",
+    "path": "archive/mozart/mz_330_2.mid",
+    "filename": "mz_330_2.mid"
+  },
+  {
+    "id": "mozart-mz_330_3-2209-5",
+    "artist": "mozart",
+    "title": "mz 330 3",
+    "path": "archive/mozart/mz_330_3.mid",
+    "filename": "mz_330_3.mid"
+  },
+  {
+    "id": "mozart-mz_331_1-2209-6",
+    "artist": "mozart",
+    "title": "mz 331 1",
+    "path": "archive/mozart/mz_331_1.mid",
+    "filename": "mz_331_1.mid"
+  },
+  {
+    "id": "mozart-mz_331_2-2209-7",
+    "artist": "mozart",
+    "title": "mz 331 2",
+    "path": "archive/mozart/mz_331_2.mid",
+    "filename": "mz_331_2.mid"
+  },
+  {
+    "id": "mozart-mz_331_3-2209-8",
+    "artist": "mozart",
+    "title": "mz 331 3",
+    "path": "archive/mozart/mz_331_3.mid",
+    "filename": "mz_331_3.mid"
+  },
+  {
+    "id": "mozart-mz_332_1-2209-9",
+    "artist": "mozart",
+    "title": "mz 332 1",
+    "path": "archive/mozart/mz_332_1.mid",
+    "filename": "mz_332_1.mid"
+  },
+  {
+    "id": "mozart-mz_332_2-2209-10",
+    "artist": "mozart",
+    "title": "mz 332 2",
+    "path": "archive/mozart/mz_332_2.mid",
+    "filename": "mz_332_2.mid"
+  },
+  {
+    "id": "mozart-mz_332_3-2209-11",
+    "artist": "mozart",
+    "title": "mz 332 3",
+    "path": "archive/mozart/mz_332_3.mid",
+    "filename": "mz_332_3.mid"
+  },
+  {
+    "id": "mozart-mz_333_1-2209-12",
+    "artist": "mozart",
+    "title": "mz 333 1",
+    "path": "archive/mozart/mz_333_1.mid",
+    "filename": "mz_333_1.mid"
+  },
+  {
+    "id": "mozart-mz_333_2-2209-13",
+    "artist": "mozart",
+    "title": "mz 333 2",
+    "path": "archive/mozart/mz_333_2.mid",
+    "filename": "mz_333_2.mid"
+  },
+  {
+    "id": "mozart-mz_333_3-2209-14",
+    "artist": "mozart",
+    "title": "mz 333 3",
+    "path": "archive/mozart/mz_333_3.mid",
+    "filename": "mz_333_3.mid"
+  },
+  {
+    "id": "mozart-mz_545_1-2209-15",
+    "artist": "mozart",
+    "title": "mz 545 1",
+    "path": "archive/mozart/mz_545_1.mid",
+    "filename": "mz_545_1.mid"
+  },
+  {
+    "id": "mozart-mz_545_2-2209-16",
+    "artist": "mozart",
+    "title": "mz 545 2",
+    "path": "archive/mozart/mz_545_2.mid",
+    "filename": "mz_545_2.mid"
+  },
+  {
+    "id": "mozart-mz_545_3-2209-17",
+    "artist": "mozart",
+    "title": "mz 545 3",
+    "path": "archive/mozart/mz_545_3.mid",
+    "filename": "mz_545_3.mid"
+  },
+  {
+    "id": "mozart-mz_570_1-2209-18",
+    "artist": "mozart",
+    "title": "mz 570 1",
+    "path": "archive/mozart/mz_570_1.mid",
+    "filename": "mz_570_1.mid"
+  },
+  {
+    "id": "mozart-mz_570_2-2209-19",
+    "artist": "mozart",
+    "title": "mz 570 2",
+    "path": "archive/mozart/mz_570_2.mid",
+    "filename": "mz_570_2.mid"
+  },
+  {
+    "id": "mozart-mz_570_3-2209-20",
+    "artist": "mozart",
+    "title": "mz 570 3",
+    "path": "archive/mozart/mz_570_3.mid",
+    "filename": "mz_570_3.mid"
+  },
+  {
     "id": "Mr._Mister-Broken_Wings-1357-2",
     "artist": "Mr. Mister",
     "title": "Broken Wings",
@@ -70012,6 +71566,62 @@
     "title": "One Night in Bangkok",
     "path": "archive/Murray_Head/One_Night_in_Bangkok.mid",
     "filename": "One_Night_in_Bangkok.mid"
+  },
+  {
+    "id": "muss-muss_1-2210-0",
+    "artist": "muss",
+    "title": "muss 1",
+    "path": "archive/muss/muss_1.mid",
+    "filename": "muss_1.mid"
+  },
+  {
+    "id": "muss-muss_2-2210-1",
+    "artist": "muss",
+    "title": "muss 2",
+    "path": "archive/muss/muss_2.mid",
+    "filename": "muss_2.mid"
+  },
+  {
+    "id": "muss-muss_3-2210-2",
+    "artist": "muss",
+    "title": "muss 3",
+    "path": "archive/muss/muss_3.mid",
+    "filename": "muss_3.mid"
+  },
+  {
+    "id": "muss-muss_4-2210-3",
+    "artist": "muss",
+    "title": "muss 4",
+    "path": "archive/muss/muss_4.mid",
+    "filename": "muss_4.mid"
+  },
+  {
+    "id": "muss-muss_5-2210-4",
+    "artist": "muss",
+    "title": "muss 5",
+    "path": "archive/muss/muss_5.mid",
+    "filename": "muss_5.mid"
+  },
+  {
+    "id": "muss-muss_6-2210-5",
+    "artist": "muss",
+    "title": "muss 6",
+    "path": "archive/muss/muss_6.mid",
+    "filename": "muss_6.mid"
+  },
+  {
+    "id": "muss-muss_7-2210-6",
+    "artist": "muss",
+    "title": "muss 7",
+    "path": "archive/muss/muss_7.mid",
+    "filename": "muss_7.mid"
+  },
+  {
+    "id": "muss-muss_8-2210-7",
+    "artist": "muss",
+    "title": "muss 8",
+    "path": "archive/muss/muss_8.mid",
+    "filename": "muss_8.mid"
   },
   {
     "id": "Mylene_Farmer-A_Quoi_Je_Sers-1362-0",
@@ -89656,6 +91266,377 @@
     "filename": "Major_Tom.4.mid"
   },
   {
+    "id": "schubert-schu_143_1-2211-0",
+    "artist": "schubert",
+    "title": "schu 143 1",
+    "path": "archive/schubert/schu_143_1.mid",
+    "filename": "schu_143_1.mid"
+  },
+  {
+    "id": "schubert-schu_143_2-2211-1",
+    "artist": "schubert",
+    "title": "schu 143 2",
+    "path": "archive/schubert/schu_143_2.mid",
+    "filename": "schu_143_2.mid"
+  },
+  {
+    "id": "schubert-schu_143_3-2211-2",
+    "artist": "schubert",
+    "title": "schu 143 3",
+    "path": "archive/schubert/schu_143_3.mid",
+    "filename": "schu_143_3.mid"
+  },
+  {
+    "id": "schubert-schub_d760_1-2211-3",
+    "artist": "schubert",
+    "title": "schub d760 1",
+    "path": "archive/schubert/schub_d760_1.mid",
+    "filename": "schub_d760_1.mid"
+  },
+  {
+    "id": "schubert-schub_d760_2-2211-4",
+    "artist": "schubert",
+    "title": "schub d760 2",
+    "path": "archive/schubert/schub_d760_2.mid",
+    "filename": "schub_d760_2.mid"
+  },
+  {
+    "id": "schubert-schub_d760_3-2211-5",
+    "artist": "schubert",
+    "title": "schub d760 3",
+    "path": "archive/schubert/schub_d760_3.mid",
+    "filename": "schub_d760_3.mid"
+  },
+  {
+    "id": "schubert-schub_d760_4-2211-6",
+    "artist": "schubert",
+    "title": "schub d760 4",
+    "path": "archive/schubert/schub_d760_4.mid",
+    "filename": "schub_d760_4.mid"
+  },
+  {
+    "id": "schubert-schub_d960_1-2211-7",
+    "artist": "schubert",
+    "title": "schub d960 1",
+    "path": "archive/schubert/schub_d960_1.mid",
+    "filename": "schub_d960_1.mid"
+  },
+  {
+    "id": "schubert-schub_d960_2-2211-8",
+    "artist": "schubert",
+    "title": "schub d960 2",
+    "path": "archive/schubert/schub_d960_2.mid",
+    "filename": "schub_d960_2.mid"
+  },
+  {
+    "id": "schubert-schub_d960_3-2211-9",
+    "artist": "schubert",
+    "title": "schub d960 3",
+    "path": "archive/schubert/schub_d960_3.mid",
+    "filename": "schub_d960_3.mid"
+  },
+  {
+    "id": "schubert-schub_d960_4-2211-10",
+    "artist": "schubert",
+    "title": "schub d960 4",
+    "path": "archive/schubert/schub_d960_4.mid",
+    "filename": "schub_d960_4.mid"
+  },
+  {
+    "id": "schubert-schubert_D850_1-2211-11",
+    "artist": "schubert",
+    "title": "schubert D850 1",
+    "path": "archive/schubert/schubert_D850_1.mid",
+    "filename": "schubert_D850_1.mid"
+  },
+  {
+    "id": "schubert-schubert_D850_2-2211-12",
+    "artist": "schubert",
+    "title": "schubert D850 2",
+    "path": "archive/schubert/schubert_D850_2.mid",
+    "filename": "schubert_D850_2.mid"
+  },
+  {
+    "id": "schubert-schubert_D850_3-2211-13",
+    "artist": "schubert",
+    "title": "schubert D850 3",
+    "path": "archive/schubert/schubert_D850_3.mid",
+    "filename": "schubert_D850_3.mid"
+  },
+  {
+    "id": "schubert-schubert_D850_4-2211-14",
+    "artist": "schubert",
+    "title": "schubert D850 4",
+    "path": "archive/schubert/schubert_D850_4.mid",
+    "filename": "schubert_D850_4.mid"
+  },
+  {
+    "id": "schubert-schubert_D935_1-2211-15",
+    "artist": "schubert",
+    "title": "schubert D935 1",
+    "path": "archive/schubert/schubert_D935_1.mid",
+    "filename": "schubert_D935_1.mid"
+  },
+  {
+    "id": "schubert-schubert_D935_2-2211-16",
+    "artist": "schubert",
+    "title": "schubert D935 2",
+    "path": "archive/schubert/schubert_D935_2.mid",
+    "filename": "schubert_D935_2.mid"
+  },
+  {
+    "id": "schubert-schubert_D935_3-2211-17",
+    "artist": "schubert",
+    "title": "schubert D935 3",
+    "path": "archive/schubert/schubert_D935_3.mid",
+    "filename": "schubert_D935_3.mid"
+  },
+  {
+    "id": "schubert-schubert_D935_4-2211-18",
+    "artist": "schubert",
+    "title": "schubert D935 4",
+    "path": "archive/schubert/schubert_D935_4.mid",
+    "filename": "schubert_D935_4.mid"
+  },
+  {
+    "id": "schubert-schuim-1-2211-19",
+    "artist": "schubert",
+    "title": "schuim-1",
+    "path": "archive/schubert/schuim-1.mid",
+    "filename": "schuim-1.mid"
+  },
+  {
+    "id": "schubert-schuim-2-2211-20",
+    "artist": "schubert",
+    "title": "schuim-2",
+    "path": "archive/schubert/schuim-2.mid",
+    "filename": "schuim-2.mid"
+  },
+  {
+    "id": "schubert-schuim-3-2211-21",
+    "artist": "schubert",
+    "title": "schuim-3",
+    "path": "archive/schubert/schuim-3.mid",
+    "filename": "schuim-3.mid"
+  },
+  {
+    "id": "schubert-schuim-4-2211-22",
+    "artist": "schubert",
+    "title": "schuim-4",
+    "path": "archive/schubert/schuim-4.mid",
+    "filename": "schuim-4.mid"
+  },
+  {
+    "id": "schubert-schumm-1-2211-23",
+    "artist": "schubert",
+    "title": "schumm-1",
+    "path": "archive/schubert/schumm-1.mid",
+    "filename": "schumm-1.mid"
+  },
+  {
+    "id": "schubert-schumm-2-2211-24",
+    "artist": "schubert",
+    "title": "schumm-2",
+    "path": "archive/schubert/schumm-2.mid",
+    "filename": "schumm-2.mid"
+  },
+  {
+    "id": "schubert-schumm-3-2211-25",
+    "artist": "schubert",
+    "title": "schumm-3",
+    "path": "archive/schubert/schumm-3.mid",
+    "filename": "schumm-3.mid"
+  },
+  {
+    "id": "schubert-schumm-4-2211-26",
+    "artist": "schubert",
+    "title": "schumm-4",
+    "path": "archive/schubert/schumm-4.mid",
+    "filename": "schumm-4.mid"
+  },
+  {
+    "id": "schubert-schumm-5-2211-27",
+    "artist": "schubert",
+    "title": "schumm-5",
+    "path": "archive/schubert/schumm-5.mid",
+    "filename": "schumm-5.mid"
+  },
+  {
+    "id": "schubert-schumm-6-2211-28",
+    "artist": "schubert",
+    "title": "schumm-6",
+    "path": "archive/schubert/schumm-6.mid",
+    "filename": "schumm-6.mid"
+  },
+  {
+    "id": "schumann-schum_abegg-2212-0",
+    "artist": "schumann",
+    "title": "schum abegg",
+    "path": "archive/schumann/schum_abegg.mid",
+    "filename": "schum_abegg.mid"
+  },
+  {
+    "id": "schumann-scn15_1-2212-1",
+    "artist": "schumann",
+    "title": "scn15 1",
+    "path": "archive/schumann/scn15_1.mid",
+    "filename": "scn15_1.mid"
+  },
+  {
+    "id": "schumann-scn15_10-2212-2",
+    "artist": "schumann",
+    "title": "scn15 10",
+    "path": "archive/schumann/scn15_10.mid",
+    "filename": "scn15_10.mid"
+  },
+  {
+    "id": "schumann-scn15_11-2212-3",
+    "artist": "schumann",
+    "title": "scn15 11",
+    "path": "archive/schumann/scn15_11.mid",
+    "filename": "scn15_11.mid"
+  },
+  {
+    "id": "schumann-scn15_12-2212-4",
+    "artist": "schumann",
+    "title": "scn15 12",
+    "path": "archive/schumann/scn15_12.mid",
+    "filename": "scn15_12.mid"
+  },
+  {
+    "id": "schumann-scn15_13-2212-5",
+    "artist": "schumann",
+    "title": "scn15 13",
+    "path": "archive/schumann/scn15_13.mid",
+    "filename": "scn15_13.mid"
+  },
+  {
+    "id": "schumann-scn15_2-2212-6",
+    "artist": "schumann",
+    "title": "scn15 2",
+    "path": "archive/schumann/scn15_2.mid",
+    "filename": "scn15_2.mid"
+  },
+  {
+    "id": "schumann-scn15_3-2212-7",
+    "artist": "schumann",
+    "title": "scn15 3",
+    "path": "archive/schumann/scn15_3.mid",
+    "filename": "scn15_3.mid"
+  },
+  {
+    "id": "schumann-scn15_4-2212-8",
+    "artist": "schumann",
+    "title": "scn15 4",
+    "path": "archive/schumann/scn15_4.mid",
+    "filename": "scn15_4.mid"
+  },
+  {
+    "id": "schumann-scn15_5-2212-9",
+    "artist": "schumann",
+    "title": "scn15 5",
+    "path": "archive/schumann/scn15_5.mid",
+    "filename": "scn15_5.mid"
+  },
+  {
+    "id": "schumann-scn15_6-2212-10",
+    "artist": "schumann",
+    "title": "scn15 6",
+    "path": "archive/schumann/scn15_6.mid",
+    "filename": "scn15_6.mid"
+  },
+  {
+    "id": "schumann-scn15_7-2212-11",
+    "artist": "schumann",
+    "title": "scn15 7",
+    "path": "archive/schumann/scn15_7.mid",
+    "filename": "scn15_7.mid"
+  },
+  {
+    "id": "schumann-scn15_8-2212-12",
+    "artist": "schumann",
+    "title": "scn15 8",
+    "path": "archive/schumann/scn15_8.mid",
+    "filename": "scn15_8.mid"
+  },
+  {
+    "id": "schumann-scn15_9-2212-13",
+    "artist": "schumann",
+    "title": "scn15 9",
+    "path": "archive/schumann/scn15_9.mid",
+    "filename": "scn15_9.mid"
+  },
+  {
+    "id": "schumann-scn16_1-2212-14",
+    "artist": "schumann",
+    "title": "scn16 1",
+    "path": "archive/schumann/scn16_1.mid",
+    "filename": "scn16_1.mid"
+  },
+  {
+    "id": "schumann-scn16_2-2212-15",
+    "artist": "schumann",
+    "title": "scn16 2",
+    "path": "archive/schumann/scn16_2.mid",
+    "filename": "scn16_2.mid"
+  },
+  {
+    "id": "schumann-scn16_3-2212-16",
+    "artist": "schumann",
+    "title": "scn16 3",
+    "path": "archive/schumann/scn16_3.mid",
+    "filename": "scn16_3.mid"
+  },
+  {
+    "id": "schumann-scn16_4-2212-17",
+    "artist": "schumann",
+    "title": "scn16 4",
+    "path": "archive/schumann/scn16_4.mid",
+    "filename": "scn16_4.mid"
+  },
+  {
+    "id": "schumann-scn16_5-2212-18",
+    "artist": "schumann",
+    "title": "scn16 5",
+    "path": "archive/schumann/scn16_5.mid",
+    "filename": "scn16_5.mid"
+  },
+  {
+    "id": "schumann-scn16_6-2212-19",
+    "artist": "schumann",
+    "title": "scn16 6",
+    "path": "archive/schumann/scn16_6.mid",
+    "filename": "scn16_6.mid"
+  },
+  {
+    "id": "schumann-scn16_7-2212-20",
+    "artist": "schumann",
+    "title": "scn16 7",
+    "path": "archive/schumann/scn16_7.mid",
+    "filename": "scn16_7.mid"
+  },
+  {
+    "id": "schumann-scn16_8-2212-21",
+    "artist": "schumann",
+    "title": "scn16 8",
+    "path": "archive/schumann/scn16_8.mid",
+    "filename": "scn16_8.mid"
+  },
+  {
+    "id": "schumann-scn68_10-2212-22",
+    "artist": "schumann",
+    "title": "scn68 10",
+    "path": "archive/schumann/scn68_10.mid",
+    "filename": "scn68_10.mid"
+  },
+  {
+    "id": "schumann-scn68_12-2212-23",
+    "artist": "schumann",
+    "title": "scn68 12",
+    "path": "archive/schumann/scn68_12.mid",
+    "filename": "scn68_12.mid"
+  },
+  {
     "id": "Scooter-Back_In_The_U.K.-1678-0",
     "artist": "Scooter",
     "title": "Back In The U.K.",
@@ -107352,7 +109333,7 @@
     "filename": "Just_Dont_Want_to_Be_Lonely.mid"
   },
   {
-    "id": "the_mamas_and_papas-California_Dreamin-2195-0",
+    "id": "the_mamas_and_papas-California_Dreamin-2213-0",
     "artist": "the mamas and papas",
     "title": "California Dreamin",
     "path": "archive/the_mamas_and_papas/California_Dreamin.mid",
@@ -114021,6 +116002,90 @@
     "title": "Insieme senza parole",
     "path": "archive/Trovato/Insieme_senza_parole.mid",
     "filename": "Insieme_senza_parole.mid"
+  },
+  {
+    "id": "tschai-ty_april-2214-0",
+    "artist": "tschai",
+    "title": "ty april",
+    "path": "archive/tschai/ty_april.mid",
+    "filename": "ty_april.mid"
+  },
+  {
+    "id": "tschai-ty_august-2214-1",
+    "artist": "tschai",
+    "title": "ty august",
+    "path": "archive/tschai/ty_august.mid",
+    "filename": "ty_august.mid"
+  },
+  {
+    "id": "tschai-ty_dezember-2214-2",
+    "artist": "tschai",
+    "title": "ty dezember",
+    "path": "archive/tschai/ty_dezember.mid",
+    "filename": "ty_dezember.mid"
+  },
+  {
+    "id": "tschai-ty_februar-2214-3",
+    "artist": "tschai",
+    "title": "ty februar",
+    "path": "archive/tschai/ty_februar.mid",
+    "filename": "ty_februar.mid"
+  },
+  {
+    "id": "tschai-ty_januar-2214-4",
+    "artist": "tschai",
+    "title": "ty januar",
+    "path": "archive/tschai/ty_januar.mid",
+    "filename": "ty_januar.mid"
+  },
+  {
+    "id": "tschai-ty_juli-2214-5",
+    "artist": "tschai",
+    "title": "ty juli",
+    "path": "archive/tschai/ty_juli.mid",
+    "filename": "ty_juli.mid"
+  },
+  {
+    "id": "tschai-ty_juni-2214-6",
+    "artist": "tschai",
+    "title": "ty juni",
+    "path": "archive/tschai/ty_juni.mid",
+    "filename": "ty_juni.mid"
+  },
+  {
+    "id": "tschai-ty_maerz-2214-7",
+    "artist": "tschai",
+    "title": "ty maerz",
+    "path": "archive/tschai/ty_maerz.mid",
+    "filename": "ty_maerz.mid"
+  },
+  {
+    "id": "tschai-ty_mai-2214-8",
+    "artist": "tschai",
+    "title": "ty mai",
+    "path": "archive/tschai/ty_mai.mid",
+    "filename": "ty_mai.mid"
+  },
+  {
+    "id": "tschai-ty_november-2214-9",
+    "artist": "tschai",
+    "title": "ty november",
+    "path": "archive/tschai/ty_november.mid",
+    "filename": "ty_november.mid"
+  },
+  {
+    "id": "tschai-ty_oktober-2214-10",
+    "artist": "tschai",
+    "title": "ty oktober",
+    "path": "archive/tschai/ty_oktober.mid",
+    "filename": "ty_oktober.mid"
+  },
+  {
+    "id": "tschai-ty_september-2214-11",
+    "artist": "tschai",
+    "title": "ty september",
+    "path": "archive/tschai/ty_september.mid",
+    "filename": "ty_september.mid"
   },
   {
     "id": "Tupac-California_Love_remix_-2064-0",
