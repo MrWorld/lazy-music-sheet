@@ -2,20 +2,24 @@ interface PlaybackControlsProps {
   isPlaying: boolean;
   tempo: number;
   currentTime?: number;
+  totalDuration?: number;
   onPlay: () => void;
   onPause: () => void;
   onStop: () => void;
   onTempoChange: (tempo: number) => void;
+  onSeek?: (quarterNotes: number) => void;
 }
 
 export function PlaybackControls({
   isPlaying,
   tempo,
   currentTime = 0,
+  totalDuration = 0,
   onPlay,
   onPause,
   onStop,
   onTempoChange,
+  onSeek,
 }: PlaybackControlsProps) {
   const formatQuarterNotes = (quarters: number) => {
     const bars = Math.floor(quarters / 4);
@@ -64,6 +68,30 @@ export function PlaybackControls({
         />
         <span className="text-sm w-12">{Number(tempo).toFixed(0)} BPM</span>
       </div>
+
+      {/* Progress Bar */}
+      {totalDuration > 0 && onSeek && (
+        <div className="flex items-center gap-2 flex-1 max-w-md">
+          <span className="text-sm font-mono text-gray-600 w-20">
+            {formatQuarterNotes(currentTime)}
+          </span>
+          <input
+            type="range"
+            min="0"
+            max={totalDuration}
+            step="0.25"
+            value={currentTime}
+            onChange={(e) => onSeek(Number(e.target.value))}
+            className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / totalDuration) * 100}%, #e5e7eb ${(currentTime / totalDuration) * 100}%, #e5e7eb 100%)`
+            }}
+          />
+          <span className="text-sm font-mono text-gray-600 w-20 text-right">
+            {formatQuarterNotes(totalDuration)}
+          </span>
+        </div>
+      )}
       
       {/* Current playback time display */}
       {isPlaying && (

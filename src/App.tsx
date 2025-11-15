@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 function App() {
   const { sheet, updateNote, removeNote, setSheetData } = useSheet();
   const [mutedTracks, setMutedTracks] = useState<Set<number>>(new Set());
-  const { isPlaying, currentTime, tempo, play, pause, stop, updateTempo } = usePlayback(sheet, mutedTracks);
+  const { isPlaying, currentTime, tempo, play, pause, stop, updateTempo, seek } = usePlayback(sheet, mutedTracks);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [pixelsPerQuarter, setPixelsPerQuarter] = useState(50);
   
@@ -75,7 +75,7 @@ function App() {
     }
   };
   
-  // Restart playback if muted tracks change during playback
+  // Restart playback if muted tracks change during playback - but continue from current position
   const prevMutedTracksRef = useRef<Set<number>>(new Set());
   useEffect(() => {
     // Check if muted tracks actually changed
@@ -85,12 +85,13 @@ function App() {
       Array.from(mutedTracks).some(id => !prevMutedTracksRef.current.has(id));
     
     if (mutedChanged && isPlaying && sheet) {
-      // Restart playback with new muted tracks
+      // Save current time and restart from there
       const wasPlaying = isPlaying;
+      const currentTimeToResume = currentTime;
       stop();
       if (wasPlaying) {
         setTimeout(() => {
-          play();
+          play(currentTimeToResume);
         }, 100);
       }
     }
@@ -205,10 +206,12 @@ function App() {
             isPlaying={isPlaying}
             tempo={tempo}
             currentTime={currentTime}
+            totalDuration={sheet ? Math.max(...sheet.notes.map(n => n.startTime + n.duration), 0) : 0}
             onPlay={handlePlay}
             onPause={pause}
             onStop={stop}
             onTempoChange={updateTempo}
+            onSeek={seek}
           />
         </>
       )}

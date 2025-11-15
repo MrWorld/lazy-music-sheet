@@ -22,22 +22,22 @@ export function usePlayback(sheet: Sheet | null, mutedTracks?: Set<number>) {
     }
   }, [sheet]);
 
-  const play = async () => {
+  const play = async (startTime?: number) => {
     if (!sheet || !playerRef.current) return;
     
     try {
       // Check if already paused - if so, resume instead of restarting
       const state = playerRef.current.getTransportState();
-      if (state === 'paused') {
+      if (state === 'paused' && startTime === undefined) {
         // Resume from where we paused
         playerRef.current.resume();
         setIsPlaying(true);
       } else {
-        // Start from beginning
+        // Start from beginning or specified time
         setIsPlaying(true);
         await playerRef.current.play(sheet, (time) => {
           setCurrentTime(time);
-        }, mutedTracks);
+        }, mutedTracks, startTime);
       }
     } catch (error) {
       console.error('Playback error:', error);
@@ -63,6 +63,11 @@ export function usePlayback(sheet: Sheet | null, mutedTracks?: Set<number>) {
     playerRef.current?.setTempo(newTempo);
   };
 
+  const seek = (quarterNotes: number) => {
+    playerRef.current?.seek(quarterNotes);
+    setCurrentTime(quarterNotes);
+  };
+
   return {
     isPlaying,
     currentTime,
@@ -71,6 +76,7 @@ export function usePlayback(sheet: Sheet | null, mutedTracks?: Set<number>) {
     pause,
     stop,
     updateTempo,
+    seek,
   };
 }
 

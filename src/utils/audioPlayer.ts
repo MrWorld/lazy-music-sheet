@@ -144,7 +144,7 @@ export class AudioPlayer {
     this.stop();
   }
 
-  async play(sheet: Sheet, onTimeUpdate?: (time: number) => void, mutedTracks?: Set<number>) {
+  async play(sheet: Sheet, onTimeUpdate?: (time: number) => void, mutedTracks?: Set<number>, startTime?: number) {
     if (this.isPlaying) {
       this.stop();
     }
@@ -183,16 +183,18 @@ export class AudioPlayer {
     });
     this.scheduledNotes = [];
 
-    // Reset transport
-    Tone.Transport.stop();
-    Tone.Transport.cancel();
-    Tone.Transport.seconds = 0;
-
     // Set tempo
     Tone.Transport.bpm.value = sheet.tempo;
 
     // Convert quarter notes to seconds (at current tempo)
     const secondsPerQuarter = 60 / sheet.tempo;
+
+    // Reset transport
+    Tone.Transport.stop();
+    Tone.Transport.cancel();
+    // If startTime is provided, start from that position, otherwise start from 0
+    const startSeconds = startTime !== undefined ? startTime * secondsPerQuarter : 0;
+    Tone.Transport.seconds = startSeconds;
 
     // Use Part to schedule all notes
     interface NoteEvent {
@@ -278,12 +280,12 @@ export class AudioPlayer {
     // Store the part for cleanup
     this.scheduledNotes.push(part as any);
     
-    // Ensure Transport is stopped and reset before starting
+    // Ensure Transport is stopped before starting
     if (Tone.Transport.state !== 'stopped') {
       Tone.Transport.stop();
     }
     Tone.Transport.cancel();
-    Tone.Transport.seconds = 0;
+    // Don't reset seconds - we already set it above based on startTime
     
     // Ensure audio context is running FIRST
     if (Tone.getContext().state !== 'running') {
@@ -387,7 +389,40 @@ export class AudioPlayer {
   }
 
   getCurrentTime(): number {
+    if (this.sheet && (Tone.Transport.state === 'started' || Tone.Transport.state === 'paused')) {
+      const elapsed = Tone.Transport.seconds;
+      const secondsPerQuarter = 60 / this.sheet.tempo;
+      return elapsed / secondsPerQuarter;
+    }
     return this.currentTime;
+  }
+
+  /**
+   * Seek to a specific time in quarter notes
+   */
+  seek(quarterNotes: number) {
+    if (!this.sheet) return;
+    
+    const wasPlaying = this.isPlaying;
+    const state = Tone.Transport.state;
+    
+    if (state === 'started' || state === 'paused') {
+      // Pause transport
+      Tone.Transport.pause();
+      
+      // Calculate seconds
+      const secondsPerQuarter = 60 / this.sheet.tempo;
+      const targetSeconds = quarterNotes * secondsPerQuarter;
+      
+      // Set transport position
+      Tone.Transport.seconds = targetSeconds;
+      this.currentTime = quarterNotes;
+      
+      // Resume if it was playing
+      if (wasPlaying) {
+        Tone.Transport.start();
+      }
+    }
   }
 
   setTempo(tempo: number) {
