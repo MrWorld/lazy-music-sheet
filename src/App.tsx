@@ -10,6 +10,7 @@ import { TrackSidebar } from './components/TrackSidebar';
 import type { Note } from './types/note';
 import { useEffect } from 'react';
 
+
 function App() {
   const { sheet, updateNote, removeNote, setSheetData } = useSheet();
   const [mutedTracks, setMutedTracks] = useState<Set<number>>(new Set());
